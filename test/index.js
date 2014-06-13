@@ -12,6 +12,14 @@ it('should return an array of stylesheet link hrefs', function (done) {
 	});
 });
 
+it('should return an array of refs when passed a HTML string', function (done) {
+	oust({ source: '<html><link rel="stylesheet" href="styles/main.css"></html>' }, function (links){
+		assert(links.length == 1);
+		assert(links[0] == 'styles/main.css');
+		done();
+	});
+});
+
 it('should return an array of script srcs', function (done) {
 	oust({ 
 		src: 'test/sample/index.html', 
