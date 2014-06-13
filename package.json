@@ -10,15 +10,17 @@
     "test": "mocha"
   },
   "dependencies": {
-    "cheerio": "*"
+    "cheerio": "0.17.0"
   },
   "devDependencies": {
     "mocha": "*"
   },
   "keywords": [
-    "css",
-    "styles",
-    "inline"
+    "stylesheet",
+    "import",
+    "script",
+    "extract",
+    "list"
   ],
   "author": "Addy Osmani",
   "license": "Apache2"
