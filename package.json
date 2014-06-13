@@ -1,0 +1,25 @@
+{
+  "name": "oust",
+  "version": "0.0.1",
+  "description": "Extract lists of stylesheets, scripts or HTML imports from files",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "cheerio": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "keywords": [
+    "css",
+    "styles",
+    "inline"
+  ],
+  "author": "Addy Osmani",
+  "license": "Apache2"
+}
