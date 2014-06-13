@@ -16,29 +16,29 @@
  *
  */
 
-var fs      = require('fs');
-var path    = require('path');
-var cheerio = require('cheerio');
+var fs      = require( 'fs' );
+var path    = require( 'path' );
+var cheerio = require( 'cheerio' );
 
 module.exports = function ( options, cb ) {
-	if ( !options.src && !options.source ) {
-		throw new Error('A valid source must be specified');
-		process.exit(1);
-	}
+    if ( !options.src && !options.source ) {
+        throw new Error( 'A valid source must be specified' );
+        process.exit(1);
+    }
     options = options || {};
     options.selector = options.selector || 'link[rel="stylesheet"]';
     options.attribute =  options.attribute  || 'href';
     cb = cb || function () {};
 
-    var html = options.source || fs.readFileSync( path.join(process.cwd(), options.src ),'utf8');
-    var $ = cheerio.load(html);
+    var html = options.source || fs.readFileSync( path.join(process.cwd(), options.src ),'utf8' );
+    var $ = cheerio.load( html );
     var linkList = [];
     var files = $( options.selector ).map(function( i, elem ){
         return $( elem ).attr( options.attribute );
     }).toArray().filter(function( item ){
         linkList.push( item );
-        return (item !== undefined && item.substring(0,4) !== 'http' && item.substring(0,2) !== '//');
+        return ( item !== undefined && item.substring( 0 ,4 ) !== 'http' && item.substring( 0 , 2 ) !== '//' );
     });
 
-	cb( linkList );
+    cb( linkList );
 }
