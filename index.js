@@ -21,7 +21,7 @@ var path    = require('path');
 var cheerio = require('cheerio');
 
 module.exports = function ( options, cb ) {
-	if ( !options.src ) {
+	if ( !options.src && !options.source ) {
 		throw new Error('A valid source must be specified');
 		process.exit(1);
 	}
@@ -30,7 +30,7 @@ module.exports = function ( options, cb ) {
     options.attribute =  options.attribute  || 'href';
     cb = cb || function () {};
 
-    var html = fs.readFileSync( path.join(process.cwd(), options.src ),'utf8');
+    var html = options.source || fs.readFileSync( path.join(process.cwd(), options.src ),'utf8');
     var $ = cheerio.load(html);
     var linkList = [];
     var files = $( options.selector ).map(function( i, elem ){
