@@ -22,8 +22,8 @@ Resource links can then be extracted from either files:
 #### Extract stylesheets references `<link rel="stylesheet">`
 
 ```js
-oust({ src: 'test/sample/index.html' } , function ( links ){
-	console.log(links);
+oust({ src: 'test/sample/index.html' } , function ( hrefs ){
+	console.log( hrefs );
 });
 ```
 
@@ -34,8 +34,8 @@ oust({
 	src: 'test/sample/index.html', 
 	selector: 'script', 
 	attribute: 'src'
-	}, function (links){
-		console.log(links);
+	}, function ( srcs ){
+		console.log( srcs );
 	});
 ```
 
@@ -46,8 +46,8 @@ oust({
 	src: 'test/imports.html', 
 	selector: 'link[rel="import"]', 
 	attribute: 'href' 
-	}, function (links){
-		console.log(links);
+	}, function ( hrefs ){
+		console.log( hrefs );
 	});
 ```
 
@@ -56,8 +56,8 @@ oust({
 ```js
 oust({ 
 	source: '<html><link rel="stylesheet" href="styles/main.css"></html>' 
-	}, function (links){
-		console.log(links);
+	}, function ( hrefs ){
+		console.log( hrefs );
 	});
 ```
 
