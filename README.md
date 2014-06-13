@@ -1,11 +1,11 @@
-oust
+oust [![Build Status](https://travis-ci.org/addyosmani/oust.svg?branch=master)](https://travis-ci.org/addyosmani/oust)
 ====
 
 > Extract a list of stylesheets, scripts or HTML imports from HTML
 
 ### Install
 
-```
+```sh
 npm install oust --save-dev
 ```
 
@@ -13,7 +13,7 @@ npm install oust --save-dev
 
 First include:
 
-```
+```js
 var oust = require('oust');
 ```
 
@@ -21,7 +21,7 @@ Resource links can then be extracted from either files:
 
 #### Extract stylesheets references `<link rel="stylesheet">`
 
-```
+```js
 oust({ src: 'test/sample/index.html' } , function ( links ){
 	console.log(links);
 });
@@ -29,7 +29,7 @@ oust({ src: 'test/sample/index.html' } , function ( links ){
 
 #### Extract script references `<script src>`
 
-```
+```js
 oust({ 
 	src: 'test/sample/index.html', 
 	selector: 'script', 
@@ -41,7 +41,7 @@ oust({
 
 #### Extract HTML imports `<link rel="import">`
 
-```
+```js
 oust({ 
 	src: 'test/imports.html', 
 	selector: 'link[rel="import"]', 
@@ -53,11 +53,11 @@ oust({
 
 #### Or from HTML string input:
 
-```
+```js
 oust({ 
 	source: '<html><link rel="stylesheet" href="styles/main.css"></html>' 
 	}, function (links){
-	console.log(links);
+		console.log(links);
 	});
 ```
 
@@ -76,4 +76,4 @@ The second parameter to `oust()` is a callback function which will include the a
 
 ### License
 
-Released under an Apache 2 license. Copyright Google 2014.
+Released under an Apache 2 license. © Google 2014.
