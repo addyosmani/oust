@@ -1,7 +1,7 @@
 oust
 ====
 
-> Extract lists of stylesheets, scripts or HTML imports from files
+> Extract lists of stylesheets, scripts or HTML imports from HTML
 
 ### Install
 
@@ -10,6 +10,14 @@ npm install oust --save-dev
 ```
 
 ### Usage
+
+First include:
+
+```
+var oust = require('oust');
+```
+
+Resource links can then be extracted from either files:
 
 ## Extract stylesheets references `<link rel="stylesheet">`
 
@@ -42,5 +50,29 @@ oust({
 		console.log(links);
 	});
 ```
+
+Or from HTML string input:
+
+```
+oust({ 
+	source: '<html><link rel="stylesheet" href="styles/main.css"></html>' 
+	}, function (links){
+	console.log(links);
+	});
+```
+
+### API
+
+## Options
+
+Attribute       | Default   | Description
+---             | ---       | ---
+`src`           | ``        | a valid path to the file you wish to parse
+`source`        | ``        | a valid string to parse for references
+`selector`      | `link[rel="stylesheet"]`        | a selector to query for
+`attribute`        | `href`        | an attribute to read from the selector query
+
+The second parameter to `oust()` is a callback function which will include the array of resources discovered.
+
 
 Released under an Apache 2 license.
