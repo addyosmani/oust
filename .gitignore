@@ -1,0 +1,11 @@
+node_modules
+.DS_Store
+test/sample/bower_components/jquery/src
+test/sample/bower_components/jquery/bower.json
+test/sample/bower_components/bootstrap/grunt
+test/sample/bower_components/bootstrap/grunt
+test/sample/bower_components/bootstrap/js
+test/sample/bower_components/bootstrap/less
+test/sample/bower_components/bootstrap/test-infra
+test/sample/bower_components/bootstrap/bower.json
+test/sample/bower_components/bootstrap/Gruntfile.js
