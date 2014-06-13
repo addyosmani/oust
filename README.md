@@ -1,7 +1,7 @@
 oust
 ====
 
-> Extract lists of stylesheets, scripts or HTML imports from HTML
+> Extract a list of stylesheets, scripts or HTML imports from HTML
 
 ### Install
 
@@ -19,7 +19,7 @@ var oust = require('oust');
 
 Resource links can then be extracted from either files:
 
-## Extract stylesheets references `<link rel="stylesheet">`
+#### Extract stylesheets references `<link rel="stylesheet">`
 
 ```
 oust({ src: 'test/sample/index.html' } , function ( links ){
@@ -27,7 +27,7 @@ oust({ src: 'test/sample/index.html' } , function ( links ){
 });
 ```
 
-## Extract script references `<script src>`
+#### Extract script references `<script src>`
 
 ```
 oust({ 
@@ -39,7 +39,7 @@ oust({
 	});
 ```
 
-## Extract HTML imports `<link rel="import">`
+#### Extract HTML imports `<link rel="import">`
 
 ```
 oust({ 
@@ -51,7 +51,7 @@ oust({
 	});
 ```
 
-Or from HTML string input:
+#### Or from HTML string input:
 
 ```
 oust({ 
@@ -63,7 +63,7 @@ oust({
 
 ### API
 
-## Options
+#### Options
 
 Attribute       | Default   | Description
 ---             | ---       | ---
@@ -74,5 +74,6 @@ Attribute       | Default   | Description
 
 The second parameter to `oust()` is a callback function which will include the array of resources discovered.
 
+### License
 
-Released under an Apache 2 license.
+Released under an Apache 2 license. Copyright Google 2014.
