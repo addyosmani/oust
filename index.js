@@ -26,19 +26,27 @@ module.exports = function ( src, type ) {
         process.exit(1);
     }
 
+    if ( !type ) {
+        throw new Error( 'A valid type must be specified' );
+        process.exit(1);
+    }
+
     // Defaults
     var attribute = 'href';
-    var type = type || 'link[rel="stylesheet"]';
+    var selector = '';
 
-    if ( type == 'script' ) {
+    if ( type == 'stylesheets'){
+        selector = 'link[rel="stylesheet"]';
+    } else if ( type == 'scripts' ) {
+        selector = 'script';
         attribute = 'src';
-    } else if ( type == 'import') {
-        type = 'link[rel="import"]';
+    } else if ( type == 'imports') {
+        selector = 'link[rel="import"]';
     }
 
     var $ = cheerio.load( src );
     var linkList = [];
-    var files = $( type ).map(function( i, elem ){
+    var files = $( selector ).map(function( i, elem ){
         return $( elem ).attr( attribute );
     }).toArray().filter(function( item ){
         linkList.push( item );
