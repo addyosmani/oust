@@ -20,20 +20,26 @@ var fs      = require( 'fs' );
 var path    = require( 'path' );
 var cheerio = require( 'cheerio' );
 
-module.exports = function ( options ) {
-    if ( !options.src && !options.source ) {
+module.exports = function ( src, selector ) {
+    if ( !src ) {
         throw new Error( 'A valid source must be specified' );
         process.exit(1);
     }
-    options = options || {};
-    options.selector = options.selector || 'link[rel="stylesheet"]';
-    options.attribute =  options.attribute  || 'href';
 
-    var html = options.source || fs.readFileSync( path.join(process.cwd(), options.src ),'utf8' );
-    var $ = cheerio.load( html );
+    // Defaults
+    var attribute = 'href';
+    var selector = selector || 'link[rel="stylesheet"]';
+
+    if ( selector == 'script' ) {
+        attribute = 'src';
+    } else if ( selector == 'import') {
+        selector = 'link[rel="import"]';
+    }
+
+    var $ = cheerio.load( src );
     var linkList = [];
-    var files = $( options.selector ).map(function( i, elem ){
-        return $( elem ).attr( options.attribute );
+    var files = $( selector ).map(function( i, elem ){
+        return $( elem ).attr( attribute );
     }).toArray().filter(function( item ){
         linkList.push( item );
         return ( item !== undefined && item.substring( 0 ,4 ) !== 'http' && item.substring( 0 , 2 ) !== '//' );

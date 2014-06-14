@@ -22,35 +22,19 @@ Resource links can then be extracted from either files:
 #### Extract stylesheets references `<link rel="stylesheet">`
 
 ```js
-var hrefs = oust({ src: 'test/sample/index.html' });
+var hrefs = oust(htmlString);
 ```
 
 #### Extract script references `<script src>`
 
 ```js
-var srcs = oust({ 
-	src: 'test/sample/index.html', 
-	selector: 'script', 
-	attribute: 'src'
-});
+var srcs = oust(htmlString, 'script');
 ```
 
 #### Extract HTML imports `<link rel="import">`
 
 ```js
-var hrefs = oust({ 
-	src: 'test/imports.html', 
-	selector: 'link[rel="import"]', 
-	attribute: 'href' 
-});
-```
-
-#### Or from HTML string input:
-
-```js
-var hrefs = oust({ 
-	source: '<html><link rel="stylesheet" href="styles/main.css"></html>' 
-});
+var hrefs = oust(htmlString, 'import');
 ```
 
 ### API
@@ -59,10 +43,8 @@ var hrefs = oust({
 
 Attribute       | Default   | Description
 ---             | ---       | ---
-`src`           | ``        | a valid path to the file you wish to parse
-`source`        | ``        | a valid string to parse for references
-`selector`      | `link[rel="stylesheet"]`        | a selector to query for
-`attribute`        | `href`        | an attribute to read from the selector query
+`src`           | ``        | a valid HTML string to parse for references
+`selector`      | `link`        | one of `link`, `script`, `import`
 
 ### License
 
