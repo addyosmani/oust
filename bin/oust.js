@@ -12,7 +12,7 @@ var printHelp = function() {
 	console.log(pkg.description);
 	console.log('');
 	console.log('Usage:');
-	console.log('  $ oust --file <filename> --selector <selector>');
+	console.log('  $ oust --file <filename> --type <type>');
 };
 
 if(argv.h || argv.help) {
@@ -26,14 +26,14 @@ if(argv.v || argv.version) {
 }
 
 var file = argv.f || argv.file;
-var selector = argv.s || argv.selector;
+var type = argv.s || argv.type;
 
 fs.readFile(file, function(err, data) {
 	if(err) {
 		console.log('Error opening file:', err.code);
 		return;
 	}
-	var res = oust(data, selector);
+	var res = oust(data, type);
 	console.log(res.join("\n"));
 });
 
