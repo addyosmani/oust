@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Extract a list of stylesheets, scripts or HTML imports from HTML",
   "main": "index.js",
+  "bin": {
+    "oust": "./bin/oust.js"
+  },
   "files": [
     "index.js"
   ],
@@ -10,7 +13,8 @@
     "test": "mocha"
   },
   "dependencies": {
-    "cheerio": "0.17.0"
+    "cheerio": "0.17.0",
+    "minimist": "0.1.0"
   },
   "devDependencies": {
     "mocha": "*"
