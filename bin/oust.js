@@ -25,14 +25,14 @@ if(argv.v || argv.version) {
 }
 
 var file = argv._[0];
-var selector = argv._[1];
+var type = argv._[1];
 
 fs.readFile(file, function(err, data) {
     if(err) {
         console.error('Error opening file:', err.message);
         process.exit(1);
     }
-    var res = oust(data, selector);
+    var res = oust(data, type);
     console.log(res.join("\n"));
 });
 
