@@ -4,7 +4,7 @@ var oust = require('../index');
 var pkg = require('../package.json');
 var fs = require('fs');
 
-var argv = require('minimist')((process.argv.slice(2)))
+var argv = require('minimist')(process.argv.slice(2));
 
 var printHelp = function() {
     console.log('oust');
@@ -32,7 +32,7 @@ fs.readFile(file, function(err, data) {
         console.error('Error opening file:', err.message);
         process.exit(1);
     }
-    var res = oust(data, type);
+    var res = oust(data, selector);
     console.log(res.join("\n"));
 });
 
