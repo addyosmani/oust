@@ -22,7 +22,7 @@ Resource links can then be extracted from either files:
 #### Extract stylesheets references `<link rel="stylesheet">`
 
 ```js
-oust({ src: 'test/sample/index.html' } , function ( hrefs ){
+var hrefs = oust({ src: 'test/sample/index.html' } , function ( hrefs ){
 	console.log( hrefs );
 });
 ```
@@ -30,35 +30,29 @@ oust({ src: 'test/sample/index.html' } , function ( hrefs ){
 #### Extract script references `<script src>`
 
 ```js
-oust({ 
+var srcs = oust({ 
 	src: 'test/sample/index.html', 
 	selector: 'script', 
 	attribute: 'src'
-	}, function ( srcs ){
-		console.log( srcs );
-	});
+});
 ```
 
 #### Extract HTML imports `<link rel="import">`
 
 ```js
-oust({ 
+var hrefs = oust({ 
 	src: 'test/imports.html', 
 	selector: 'link[rel="import"]', 
 	attribute: 'href' 
-	}, function ( hrefs ){
-		console.log( hrefs );
-	});
+});
 ```
 
 #### Or from HTML string input:
 
 ```js
-oust({ 
+var hrefs = oust({ 
 	source: '<html><link rel="stylesheet" href="styles/main.css"></html>' 
-	}, function ( hrefs ){
-		console.log( hrefs );
-	});
+});
 ```
 
 ### API
@@ -71,8 +65,6 @@ Attribute       | Default   | Description
 `source`        | ``        | a valid string to parse for references
 `selector`      | `link[rel="stylesheet"]`        | a selector to query for
 `attribute`        | `href`        | an attribute to read from the selector query
-
-The second parameter to `oust()` is a callback function which will include the array of resources discovered.
 
 ### License
 
