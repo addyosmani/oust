@@ -22,9 +22,7 @@ Resource links can then be extracted from either files:
 #### Extract stylesheets references `<link rel="stylesheet">`
 
 ```js
-var hrefs = oust({ src: 'test/sample/index.html' } , function ( hrefs ){
-	console.log( hrefs );
-});
+var hrefs = oust({ src: 'test/sample/index.html' });
 ```
 
 #### Extract script references `<script src>`
