@@ -4,7 +4,6 @@ var oust = require('../index');
 var pkg = require('../package.json');
 var fs = require('fs');
 
-
 var argv = require('minimist')((process.argv.slice(2)))
 
 var printHelp = function() {
@@ -12,7 +11,7 @@ var printHelp = function() {
 	console.log(pkg.description);
 	console.log('');
 	console.log('Usage:');
-	console.log('  $ oust --file <filename> --selector <selector>');
+	console.log('  $ oust <filename> <selector>');
 };
 
 if(argv.h || argv.help) {
@@ -25,13 +24,13 @@ if(argv.v || argv.version) {
 	return;
 }
 
-var file = argv.f || argv.file;
-var selector = argv.s || argv.selector;
+var file = argv._[0];
+var selector = argv._[1];
 
 fs.readFile(file, function(err, data) {
 	if(err) {
-		console.log('Error opening file:', err.code);
-		return;
+		console.error('Error opening file:', err.message);
+		process.exit(1);
 	}
 	var res = oust(data, selector);
 	console.log(res.join("\n"));
