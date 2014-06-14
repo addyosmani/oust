@@ -11,7 +11,7 @@ var printHelp = function() {
 	console.log('oust');
 	console.log(pkg.description);
 	console.log('');
-	console.log'Usage:');
+	console.log('Usage:');
 	console.log('  $ oust --file <filename> --selector <selector>');
 };
 
