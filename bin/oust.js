@@ -30,7 +30,8 @@ var type = argv.s || argv.type;
 
 fs.readFile(file, function(err, data) {
 	if(err) {
-		console.log('Error opening file:', err.code);
+		console.error('Error opening file:', err.message);
+		process.exit(1);
 		return;
 	}
 	var res = oust(data, type);
