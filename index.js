@@ -20,7 +20,7 @@ var fs      = require( 'fs' );
 var path    = require( 'path' );
 var cheerio = require( 'cheerio' );
 
-module.exports = function ( src, selector ) {
+module.exports = function ( src, type ) {
     if ( !src ) {
         throw new Error( 'A valid source must be specified' );
         process.exit(1);
@@ -28,17 +28,17 @@ module.exports = function ( src, selector ) {
 
     // Defaults
     var attribute = 'href';
-    var selector = selector || 'link[rel="stylesheet"]';
+    var type = type || 'link[rel="stylesheet"]';
 
-    if ( selector == 'script' ) {
+    if ( type == 'script' ) {
         attribute = 'src';
-    } else if ( selector == 'import') {
-        selector = 'link[rel="import"]';
+    } else if ( type == 'import') {
+        type = 'link[rel="import"]';
     }
 
     var $ = cheerio.load( src );
     var linkList = [];
-    var files = $( selector ).map(function( i, elem ){
+    var files = $( type ).map(function( i, elem ){
         return $( elem ).attr( attribute );
     }).toArray().filter(function( item ){
         linkList.push( item );
