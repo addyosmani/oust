@@ -7,33 +7,33 @@ var fs = require('fs');
 var argv = require('minimist')((process.argv.slice(2)))
 
 var printHelp = function() {
-	console.log('oust');
-	console.log(pkg.description);
-	console.log('');
-	console.log('Usage:');
-	console.log('  $ oust <filename> <selector>');
+    console.log('oust');
+    console.log(pkg.description);
+    console.log('');
+    console.log('Usage:');
+    console.log('  $ oust <filename> <selector>');
 };
 
 if(argv.h || argv.help) {
-	printHelp();
-	return;
+    printHelp();
+    return;
 }
 
 if(argv.v || argv.version) {
-	console.log(pkg.version);
-	return;
+    console.log(pkg.version);
+    return;
 }
 
 var file = argv._[0];
 var selector = argv._[1];
 
 fs.readFile(file, function(err, data) {
-	if(err) {
-		console.error('Error opening file:', err.message);
-		process.exit(1);
-	}
-	var res = oust(data, selector);
-	console.log(res.join("\n"));
+    if(err) {
+        console.error('Error opening file:', err.message);
+        process.exit(1);
+    }
+    var res = oust(data, type);
+    console.log(res.join("\n"));
 });
 
 

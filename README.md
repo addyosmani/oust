@@ -22,19 +22,19 @@ Resource links can then be extracted from either files:
 #### Extract stylesheets references `<link rel="stylesheet">`
 
 ```js
-var hrefs = oust(htmlString);
+var hrefs = oust(htmlString, 'stylesheets');
 ```
 
 #### Extract script references `<script src>`
 
 ```js
-var srcs = oust(htmlString, 'script');
+var srcs = oust(htmlString, 'scripts');
 ```
 
 #### Extract HTML imports `<link rel="import">`
 
 ```js
-var hrefs = oust(htmlString, 'import');
+var hrefs = oust(htmlString, 'imports');
 ```
 
 ### API
@@ -44,7 +44,7 @@ var hrefs = oust(htmlString, 'import');
 Attribute       | Default   | Description
 ---             | ---       | ---
 `src`           | ``        | a valid HTML string to parse for references
-`selector`      | `link`        | one of `link`, `script`, `import`
+`type`      | ``        | one of `stylesheets`, `scripts`, `imports`
 
 ### License
 
