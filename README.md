@@ -44,7 +44,7 @@ var hrefs = oust(htmlString, 'import');
 Attribute       | Default   | Description
 ---             | ---       | ---
 `src`           | ``        | a valid HTML string to parse for references
-`type`      | `link`        | one of `link`, `script`, `import`
+`type`      | `link[rel="stylesheet"]`        | one of `link`, `script`, `import`
 
 ### License
 
