@@ -7,11 +7,13 @@ var fs = require('fs');
 var argv = require('minimist')(process.argv.slice(2));
 
 var printHelp = function() {
-    console.log('oust');
-    console.log(pkg.description);
-    console.log('');
-    console.log('Usage:');
-    console.log('  $ oust <filename> <selector>');
+    console.log([
+        'oust',
+        pkg.description,
+        '',
+        'Usage:',
+        '    $ oust <filename> <type>'
+    ].join('\n'));
 };
 
 if(argv.h || argv.help) {
@@ -33,7 +35,7 @@ fs.readFile(file, function(err, data) {
         process.exit(1);
     }
     var res = oust(data, type);
-    console.log(res.join("\n"));
+    console.log(res.join('\n'));
 });
 
 
