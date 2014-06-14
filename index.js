@@ -23,12 +23,10 @@ var cheerio = require( 'cheerio' );
 module.exports = function ( src, type ) {
     if ( !src ) {
         throw new Error( 'A valid source must be specified' );
-        process.exit(1);
     }
 
     if ( !type ) {
         throw new Error( 'A valid type must be specified' );
-        process.exit(1);
     }
 
     // Defaults
