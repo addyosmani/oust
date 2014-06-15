@@ -37,6 +37,12 @@ var srcs = oust(htmlString, 'scripts');
 var hrefs = oust(htmlString, 'imports');
 ```
 
+#### Extract URL references `<a href>`
+
+```js
+var srcs = oust(htmlString, 'links');
+```
+
 ### API
 
 #### Options
@@ -44,7 +50,7 @@ var hrefs = oust(htmlString, 'imports');
 Attribute       | Default   | Description
 ---             | ---       | ---
 `src`           | ``        | a valid HTML string to parse for references
-`type`      | ``        | one of `stylesheets`, `scripts`, `imports`
+`type`      | ``        | one of `stylesheets`, `scripts`, `imports`, `links`
 
 ### License
 
