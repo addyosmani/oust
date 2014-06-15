@@ -1,7 +1,7 @@
 oust [![Build Status](https://travis-ci.org/addyosmani/oust.svg?branch=master)](https://travis-ci.org/addyosmani/oust)
 ====
 
-> Extract a list of stylesheets, scripts, links or HTML imports from HTML
+> Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML
 
 ### Install
 
@@ -43,6 +43,12 @@ var hrefs = oust(htmlString, 'imports');
 var srcs = oust(htmlString, 'links');
 ```
 
+#### Extract image source references `<img src>`
+
+```js
+var srcs = oust(htmlString, 'images');
+```
+
 ### API
 
 #### Options
@@ -50,7 +56,7 @@ var srcs = oust(htmlString, 'links');
 Attribute       | Default   | Description
 ---             | ---       | ---
 `src`           | ``        | a valid HTML string to parse for references
-`type`      | ``        | one of `stylesheets`, `scripts`, `imports`, `links`
+`type`      | ``        | one of `stylesheets`, `scripts`, `imports`, `links`, `images`
 
 ### License
 

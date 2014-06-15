@@ -33,15 +33,18 @@ module.exports = function ( src, type ) {
     var attribute = 'href';
     var selector = '';
 
-    if ( type == 'stylesheets'){
+    if ( type == 'stylesheets' ){
         selector = 'link[rel="stylesheet"]';
     } else if ( type == 'scripts' ) {
         selector = 'script';
         attribute = 'src';
-    } else if ( type == 'imports') {
+    } else if ( type == 'imports' ) {
         selector = 'link[rel="import"]';
-    } else if ( type == 'links') {
+    } else if ( type == 'links' ) {
         selector = 'a';
+    } else if ( type == 'images' ) {
+        selector = 'img';
+        attribute = 'src';
     }
 
     var $ = cheerio.load( src );

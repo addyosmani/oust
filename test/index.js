@@ -50,6 +50,17 @@ it('should return an array of link URLs', function (done) {
 	});
 });
 
+it('should return an array of image sources', function (done) {
+	fs.readFile('test/sample/index.html', function read(err, data) {
+		var links = oust(data, 'images');
+		assert(links.length == 3);
+		assert(links[0] == 'http://placekitten.com/200/300');
+		assert(links[1] == 'http://placekitten.com/300/400');
+		assert(links[2] == 'http://placekitten.com/500/600');
+		done();
+	});
+});
+
 it('should fail if no valid source is specified', function (done) {
 	try {
 		var links = oust();
