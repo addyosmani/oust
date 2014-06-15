@@ -1,7 +1,7 @@
 oust [![Build Status](https://travis-ci.org/addyosmani/oust.svg?branch=master)](https://travis-ci.org/addyosmani/oust)
 ====
 
-> Extract a list of stylesheets, scripts or HTML imports from HTML
+> Extract a list of stylesheets, scripts, links or HTML imports from HTML
 
 ### Install
 

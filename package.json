@@ -1,7 +1,7 @@
 {
   "name": "oust",
   "version": "0.0.1",
-  "description": "Extract a list of stylesheets, scripts or HTML imports from HTML",
+  "description": "Extract a list of stylesheets, scripts, links or HTML imports from HTML",
   "main": "index.js",
   "bin": {
     "oust": "./bin/oust.js"
