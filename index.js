@@ -40,6 +40,8 @@ module.exports = function ( src, type ) {
         attribute = 'src';
     } else if ( type == 'imports') {
         selector = 'link[rel="import"]';
+    } else if ( type == 'links') {
+        selector = 'a';
     }
 
     var $ = cheerio.load( src );

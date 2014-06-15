@@ -39,6 +39,17 @@ it('should return an array of HTML imports', function (done) {
 	});
 });
 
+it('should return an array of link URLs', function (done) {
+	fs.readFile('test/sample/index.html', function read(err, data) {
+		var links = oust(data, 'links');
+		assert(links.length == 4);
+		assert(links[0] == 'index.html');
+		assert(links[1] == 'about.html');
+		assert(links[2] == 'contact.html');
+		done();
+	});
+});
+
 it('should fail if no valid source is specified', function (done) {
 	try {
 		var links = oust();
