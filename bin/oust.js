@@ -16,7 +16,7 @@ var printHelp = function() {
     ].join('\n'));
 };
 
-if(argv.h || argv.help) {
+if(argv.h || argv.help || argv._.length === 0) {
     printHelp();
     return;
 }
