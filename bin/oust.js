@@ -16,13 +16,13 @@ var printHelp = function() {
     ].join('\n'));
 };
 
-if(argv.h || argv.help || argv._.length === 0) {
-    printHelp();
+if(argv.v || argv.version) {
+    console.log(pkg.version);
     return;
 }
 
-if(argv.v || argv.version) {
-    console.log(pkg.version);
+if(argv.h || argv.help || argv._.length === 0) {
+    printHelp();
     return;
 }
 
