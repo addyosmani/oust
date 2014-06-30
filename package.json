@@ -1,6 +1,6 @@
 {
   "name": "oust",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML",
   "main": "index.js",
   "bin": {
