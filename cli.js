@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var oust = require('../index');
-var pkg = require('../package.json');
-var fs = require('fs');
+var oust = require( './index' );
+var pkg = require( './package.json' );
+var fs = require( 'fs' );
 
 var argv = require('minimist')(process.argv.slice(2));
 

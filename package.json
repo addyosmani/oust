@@ -4,11 +4,11 @@
   "description": "Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML",
   "main": "index.js",
   "bin": {
-    "oust": "./bin/oust.js"
+    "oust": "cli.js"
   },
   "files": [
     "index.js",
-    "./bin/oust.js"
+    "cli.js"
   ],
   "scripts": {
     "test": "mocha"
