@@ -1,6 +1,6 @@
 {
   "name": "oust",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML",
   "bin": {
     "oust": "cli.js"
