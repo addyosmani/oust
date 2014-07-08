@@ -2,7 +2,6 @@
   "name": "oust",
   "version": "0.1.1",
   "description": "Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML",
-  "main": "index.js",
   "bin": {
     "oust": "cli.js"
   },
@@ -14,8 +13,8 @@
     "test": "mocha"
   },
   "dependencies": {
-    "cheerio": "0.17.0",
-    "minimist": "0.1.0"
+    "cheerio": "^0.17.0",
+    "minimist": "^0.2.0"
   },
   "devDependencies": {
     "mocha": "*"

@@ -1,27 +1,28 @@
 #!/usr/bin/env node
-
-var oust = require( './index' );
-var pkg = require( './package.json' );
-var fs = require( 'fs' );
-
+'use strict';
+var fs = require('fs');
 var argv = require('minimist')(process.argv.slice(2));
+var pkg = require('./package.json');
+var oust = require('./');
 
-var printHelp = function() {
+function printHelp() {
     console.log([
-        'oust',
         pkg.description,
         '',
-        'Usage:',
-        '    $ oust <filename> <type>'
+        'Usage',
+        '  $ oust <filename> <type>',
+        '',
+        'Example',
+        '  $ oust index.html scripts'
     ].join('\n'));
-};
+}
 
-if(argv.v || argv.version) {
+if (argv.v || argv.version) {
     console.log(pkg.version);
     return;
 }
 
-if(argv.h || argv.help || argv._.length === 0) {
+if (argv.h || argv.help || argv._.length === 0) {
     printHelp();
     return;
 }
@@ -29,13 +30,11 @@ if(argv.h || argv.help || argv._.length === 0) {
 var file = argv._[0];
 var type = argv._[1];
 
-fs.readFile(file, function(err, data) {
-    if(err) {
+fs.readFile(file, function (err, data) {
+    if (err) {
         console.error('Error opening file:', err.message);
         process.exit(1);
     }
-    var res = oust(data, type);
-    console.log(res.join('\n'));
+
+    console.log(oust(data, type).join('\n'));
 });
-
-
