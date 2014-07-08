@@ -1,15 +1,16 @@
-oust [![Build Status](https://travis-ci.org/addyosmani/oust.svg?branch=master)](https://travis-ci.org/addyosmani/oust)
-====
+# oust [![Build Status](https://travis-ci.org/addyosmani/oust.svg?branch=master)](https://travis-ci.org/addyosmani/oust)
 
 > Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML
 
-### Install
+
+## Install
 
 ```sh
-npm install oust --save-dev
+$ npm install --save-dev oust
 ```
 
-### Usage
+
+## Usage
 
 First include:
 
@@ -49,19 +50,20 @@ var srcs = oust(htmlString, 'links');
 var srcs = oust(htmlString, 'images');
 ```
 
-### API
+## API
 
 #### Options
 
 Attribute       | Default   | Description
 ---             | ---       | ---
 `src`           | ``        | a valid HTML string to parse for references
-`type`      | ``        | one of `stylesheets`, `scripts`, `imports`, `links`, `images`
+`type`          | ``        | one of `stylesheets`, `scripts`, `imports`, `links`, `images`
 
-### Oust CLI
+
+## CLI
 
 ```sh
-npm install --global oust
+$ npm install --global oust
 ```
 
 ```sh
@@ -74,33 +76,34 @@ Usage:
 #### Extract stylesheets references `<link rel="stylesheet">`
 
 ```sh
-oust myFile.html stylesheets
+$ oust myFile.html stylesheets
 ```
 
 #### Extract script references `<script src>`
 
 ```sh
-oust myFile.html scripts
+$ oust myFile.html scripts
 ```
 
 #### Extract HTML imports `<link rel="import">`
 
 ```sh
-oust myFile.html imports
+$ oust myFile.html imports
 ```
 
 #### Extract URL references `<a href>`
 
 ```sh
-oust myFile.html links
+$ oust myFile.html links
 ```
 
 #### Extract image source references `<img src>`
 
 ```sh
-oust myFile.html images
+$ oust myFile.html images
 ```
 
-### License
+
+## License
 
 Released under an Apache 2 license. © Google 2014.

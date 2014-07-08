@@ -15,46 +15,41 @@
  * limitations under the License.
  *
  */
+'use strict';
+var cheerio = require('cheerio');
 
-var fs      = require( 'fs' );
-var path    = require( 'path' );
-var cheerio = require( 'cheerio' );
+var types = {
+    stylesheets: {
+        selector: 'link[rel="stylesheet"]',
+        attribute: 'href'
+    },
+    scripts: {
+        selector: 'script',
+        attribute: 'src'
+    },
+    imports: {
+        selector: 'link[rel="import"]',
+        attribute: 'href'
+    },
+    links: {
+        selector: 'a',
+        attribute: 'href'
+    },
+    images: {
+        selector: 'img',
+        attribute: 'src'
+    }
+};
 
-module.exports = function ( src, type ) {
-    if ( !src ) {
-        throw new Error( 'A valid source must be specified' );
+module.exports = function (src, type) {
+    if (!src || !type) {
+        throw new Error('`src` and `type` required');
     }
 
-    if ( !type ) {
-        throw new Error( 'A valid type must be specified' );
-    }
+    var chosenType = types[type];
+    var $ = cheerio.load(src);
 
-    // Defaults
-    var attribute = 'href';
-    var selector = '';
-
-    if ( type == 'stylesheets' ){
-        selector = 'link[rel="stylesheet"]';
-    } else if ( type == 'scripts' ) {
-        selector = 'script';
-        attribute = 'src';
-    } else if ( type == 'imports' ) {
-        selector = 'link[rel="import"]';
-    } else if ( type == 'links' ) {
-        selector = 'a';
-    } else if ( type == 'images' ) {
-        selector = 'img';
-        attribute = 'src';
-    }
-
-    var $ = cheerio.load( src );
-    var linkList = [];
-    var files = $( selector ).map(function( i, elem ){
-        return $( elem ).attr( attribute );
-    }).toArray().filter(function( item ){
-        linkList.push( item );
-        return ( item !== undefined && item.substring( 0 ,4 ) !== 'http' && item.substring( 0 , 2 ) !== '//' );
-    });
-
-    return linkList;
-}
+    return $(chosenType.selector).map(function (i, el) {
+        return $(el).attr(chosenType.attribute);
+    }).toArray();
+};
