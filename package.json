@@ -1,7 +1,18 @@
 {
   "name": "oust",
   "version": "0.2.0",
+  "author": "Addy Osmani <addyosmani@gmail.com> (http://addyosmani.com)",
+  "license": "Apache2",
   "description": "Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/addyosmani/oust.git"
+  },
+  "bugs": {
+    "url": "https://github.com/addyosmani/oust/issues"
+  },
+  "homepage": "https://github.com/addyosmani/oust",
+  "main": "index.js",
   "bin": {
     "oust": "cli.js"
   },
@@ -28,11 +39,5 @@
   ],
   "engines": {
     "node": ">=0.10.0"
-  },
-  "author": {
-    "name": "Addy Osmani",
-    "email": "addyosmani@gmail.com",
-    "url": "http://addyosmani.com"
-  },
-  "license": "Apache2"
+  }
 }
