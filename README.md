@@ -61,7 +61,7 @@ Attribute       | Default   | Description
 ### Oust CLI
 
 ```sh
-sudo npm install --global oust
+npm install --global oust
 ```
 
 ```sh
