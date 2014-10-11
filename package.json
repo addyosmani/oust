@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "cheerio": "^0.17.0",
-    "minimist": "~1.1.0"
+    "minimist": "^1.1.0"
   },
   "devDependencies": {
     "mocha": "*"
