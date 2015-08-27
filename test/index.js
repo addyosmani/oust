@@ -5,9 +5,12 @@ var oust = require('../');
 
 it('should return an array of stylesheet link hrefs', function () {
     var links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'stylesheets');
-    assert(links.length === 2);
-    assert(links[0] === 'bower_components/bootstrap/dist/css/bootstrap.css');
-    assert(links[1] === 'styles/main.css');
+    assert(links.length === 5);
+    assert(links[0] === 'http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+    assert(links[1] === 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+    assert(links[2] === '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+    assert(links[3] === 'bower_components/bootstrap/dist/css/bootstrap.css');
+    assert(links[4] === 'styles/main.css');
 });
 
 it('should return an array of refs when passed a HTML string', function () {
@@ -56,3 +59,19 @@ it('should fail if no valid type is specified', function () {
         oust(fs.readFileSync('test/imports.html', 'utf8'));
     });
 });
+
+it('should return an array of relative URLs', function () {
+    var links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'stylesheets', 'relative');
+    assert(links.length === 2);
+    assert(links[0] === 'bower_components/bootstrap/dist/css/bootstrap.css');
+    assert(links[1] === 'styles/main.css');
+});
+
+it('should return an array of absolute URLs', function () {
+    var links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'stylesheets', 'absolute');
+    assert(links.length === 3);
+    assert(links[0] === 'http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+    assert(links[1] === 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+    assert(links[2] === '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+});
+

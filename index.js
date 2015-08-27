@@ -41,15 +41,26 @@ var types = {
     }
 };
 
-module.exports = function (src, type) {
+var absolute_filter = '[__attribute__^="http:"],[__attribute__^="https:"],[__attribute__^="//"]';
+
+module.exports = function (src, type, filter) {
     if (!src || !type) {
         throw new Error('`src` and `type` required');
     }
 
     var chosenType = types[type];
     var $ = cheerio.load(src);
+    var $selected = $(chosenType.selector);
 
-    return $(chosenType.selector).map(function (i, el) {
+    if (filter) {
+        var f = absolute_filter.replace(/__attribute__/g, chosenType.attribute);
+        if (filter == "relative") {
+            f = ":not(" + f + ")";
+        }
+        $selected = $selected.filter(f);
+    }
+
+    return $selected.map(function (i, el) {
         return $(el).attr(chosenType.attribute);
     }).toArray();
 };
