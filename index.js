@@ -41,15 +41,22 @@ var types = {
     }
 };
 
-module.exports = function (src, type) {
+module.exports = function (src, type, filter) {
     if (!src || !type) {
         throw new Error('`src` and `type` required');
     }
 
     var chosenType = types[type];
     var $ = cheerio.load(src);
+    var $elements = $(chosenType.selector);
 
-    return $(chosenType.selector).map(function (i, el) {
+    if (filter) {
+        $elements = $elements.filter(function(i,el){
+            return filter(i,$(el));
+        });
+    }
+
+    return $elements.map(function (i, el) {
         return $(el).attr(chosenType.attribute);
     }).toArray();
 };

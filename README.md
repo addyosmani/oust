@@ -26,6 +26,14 @@ Resource links can then be extracted from either files:
 var hrefs = oust(htmlString, 'stylesheets');
 ```
 
+#### Extract stylesheets references with media print `<link rel="stylesheet" media="print">`
+
+```js
+var hrefs = oust(htmlString, 'stylesheets', function(i, $el) {
+    return $el.attr('media') === 'print';
+});
+```
+
 #### Extract script references `<script src>`
 
 ```js
@@ -58,7 +66,7 @@ Attribute       | Default   | Description
 ---             | ---       | ---
 `src`           | ``        | a valid HTML string to parse for references
 `type`          | ``        | one of `stylesheets`, `scripts`, `imports`, `links`, `images`
-
+`filter`        | ``        | filter function invoked with two arguments: (index, element) 
 
 ## CLI
 
