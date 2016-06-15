@@ -31,6 +31,10 @@ var types = {
         selector: 'link[rel="import"]',
         attribute: 'href'
     },
+    preload: {
+      selector: 'link[rel="preload"][as="style"]',
+      attribute: 'href'
+    },
     links: {
         selector: 'a',
         attribute: 'href'
