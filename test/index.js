@@ -29,6 +29,12 @@ it('should return an array of HTML imports', function () {
     assert(links[1] === '../core-ajax/core-ajax.html');
 });
 
+it('should return an array of stylesheet preload hrefs', function () {
+    var links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'preload');
+    assert(links.length === 1);
+    assert(links[0] === 'styles/preload.css');
+});
+
 it('should return an array of link URLs', function () {
     var links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'links');
     assert(links.length === 4);
