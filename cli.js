@@ -10,10 +10,10 @@ function printHelp() {
         pkg.description,
         '',
         'Usage',
-        '  $ oust <filename> <type>',
+        '  $ oust <filename> <type> <filter>',
         '',
         'Example',
-        '  $ oust index.html scripts'
+        '  $ oust index.html scripts relative'
     ].join('\n'));
 }
 
@@ -29,6 +29,12 @@ if (argv.h || argv.help || argv._.length === 0) {
 
 var file = argv._[0];
 var type = argv._[1];
+var filter = argv._[2];
+var delimiter = '\n';
+
+if (argv.d) {
+    delimiter = argv.d;
+}
 
 fs.readFile(file, function (err, data) {
     if (err) {
@@ -36,5 +42,5 @@ fs.readFile(file, function (err, data) {
         process.exit(1);
     }
 
-    console.log(oust(data, type).join('\n'));
+    console.log(oust(data, type, filter).join(delimiter));
 });

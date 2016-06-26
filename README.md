@@ -50,6 +50,14 @@ var srcs = oust(htmlString, 'links');
 var srcs = oust(htmlString, 'images');
 ```
 
+#### Extract only relative or absolute references
+
+```js
+var hrefs = oust(htmlString, 'stylesheets', 'relative');
+var hrefs = oust(htmlString, 'stylesheets', 'absolute');
+```
+
+
 ## API
 
 #### Options
@@ -58,6 +66,7 @@ Attribute       | Default   | Description
 ---             | ---       | ---
 `src`           | ``        | a valid HTML string to parse for references
 `type`          | ``        | one of `stylesheets`, `scripts`, `imports`, `links`, `images`
+`filter`        | ``        | optional, one of `absolute`, `relative`
 
 
 ## CLI
@@ -70,7 +79,7 @@ $ npm install --global oust
 Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML
 
 Usage:
-    $ oust <filename> <type>
+    $ oust <filename> <type> <filter>
 ```
 
 #### Extract stylesheets references `<link rel="stylesheet">`
@@ -103,6 +112,18 @@ $ oust myFile.html links
 $ oust myFile.html images
 ```
 
+#### Extract only relative or absolute references
+
+```sh
+$ oust myFile.html stylesheets relative
+$ oust myFile.html stylesheets absolute
+```
+
+#### Override newline delimiter with a custom string
+
+```sh
+$ oust -d " " myFile.html stylesheets
+```
 
 ## License
 
