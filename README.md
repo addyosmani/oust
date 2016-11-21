@@ -58,6 +58,21 @@ var srcs = oust(htmlString, 'links');
 var srcs = oust(htmlString, 'images');
 ```
 
+#### Extract cheerio elements alongside the value
+Usefull for post processing/filtering as you get an array of matched elements 
+with cheerio convenience syntax (e.g. `$el.attr()`)
+
+```js
+var srcs = oust.raw(htmlString, '...');
+
+ -> [
+    {value: '...', $el: '...'},
+    {value: '...', $el: '...'},
+    ...
+ ]
+```
+
+
 ## API
 
 #### Options
@@ -66,7 +81,6 @@ Attribute       | Default   | Description
 ---             | ---       | ---
 `src`           | ``        | a valid HTML string to parse for references
 `type`          | ``        | one of `stylesheets`, `scripts`, `imports`, `links`, `images`
-`filter`        | ``        | filter function invoked with two arguments: (index, element) 
 
 ## CLI
 

@@ -63,6 +63,10 @@ module.exports.raw = function (src, type) {
     var $ = cheerio.load(src);
 
     return Array.prototype.map.call($(chosenType.selector), function(el) {
-        return $(el);
+        var $el = $(el);
+        return {
+            $el: $el,
+            value: $el.attr(chosenType.attribute)
+        }
     });
 };
