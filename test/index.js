@@ -16,12 +16,16 @@ it('should return an array of refs when passed a HTML string', function () {
     assert(links[0] === 'styles/main.css');
 });
 
-it('should return an array of stylesheet link hrefs without media="print"', function () {
-    var links = oust(fs.readFileSync('test/media.html', 'utf8'), 'stylesheets', function (i, $el) {
-        return $el.attr('media') !== 'print';
+it('should return an array of stylesheet link cheerio elements', function () {
+    var links = oust.raw(fs.readFileSync('test/media.html', 'utf8'), 'stylesheets')
+
+    links.forEach(function(link) {
+        assert(typeof link.attr === 'function');
+        assert(typeof link.attr === 'function');
+        assert(typeof link.html === 'function');
+        assert(typeof link.val === 'function');
+        assert(typeof link.contents === 'function');
     });
-    assert(links.length === 1);
-    assert(links[0] === 'styles/main.css');
 });
 
 it('should return an array of script srcs', function () {

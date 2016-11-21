@@ -41,22 +41,28 @@ var types = {
     }
 };
 
-module.exports = function (src, type, filter) {
+module.exports = function (src, type) {
     if (!src || !type) {
         throw new Error('`src` and `type` required');
     }
 
     var chosenType = types[type];
     var $ = cheerio.load(src);
-    var $elements = $(chosenType.selector);
 
-    if (filter) {
-        $elements = $elements.filter(function(i,el){
-            return filter(i,$(el));
-        });
-    }
-
-    return $elements.map(function (i, el) {
+    return $(chosenType.selector).map(function (i, el) {
         return $(el).attr(chosenType.attribute);
     }).toArray();
+};
+
+module.exports.raw = function (src, type) {
+    if (!src || !type) {
+        throw new Error('`src` and `type` required');
+    }
+
+    var chosenType = types[type];
+    var $ = cheerio.load(src);
+
+    return Array.prototype.map.call($(chosenType.selector), function(el) {
+        return $(el);
+    });
 };
