@@ -16,6 +16,22 @@ it('should return an array of refs when passed a HTML string', function () {
     assert(links[0] === 'styles/main.css');
 });
 
+it('should return an array of stylesheet link cheerio elements', function () {
+    var links = oust.raw(fs.readFileSync('test/media.html', 'utf8'), 'stylesheets');
+
+    links.forEach(function(link) {
+        assert(typeof link.$el.attr === 'function');
+        assert(typeof link.$el.attr === 'function');
+        assert(typeof link.$el.html === 'function');
+        assert(typeof link.$el.val === 'function');
+        assert(typeof link.$el.contents === 'function');
+    });
+
+    assert(links.length === 2);
+    assert(links[0].value === 'styles/main.css');
+    assert(links[1].value === 'styles/print.css');
+});
+
 it('should return an array of script srcs', function () {
     var links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'scripts');
     assert(links.length === 1);
@@ -53,7 +69,7 @@ it('should return an array of image sources', function () {
 
 it('should fail if no valid source is specified', function () {
     assert.throws(function () {
-       oust();
+        oust();
     });
 });
 
@@ -62,3 +78,5 @@ it('should fail if no valid type is specified', function () {
         oust(fs.readFileSync('test/imports.html', 'utf8'));
     });
 });
+
+
