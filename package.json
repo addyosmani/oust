@@ -1,12 +1,12 @@
 {
   "name": "oust",
   "version": "0.4.0",
-  "author": "Addy Osmani <addyosmani@gmail.com> (http://addyosmani.com)",
+  "author": "Addy Osmani <addyosmani@gmail.com> (https://addyosmani.com)",
   "license": "Apache-2.0",
   "description": "Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML",
   "repository": {
     "type": "git",
-    "url": "https://github.com/addyosmani/oust.git"
+    "url": "git+https://github.com/addyosmani/oust.git"
   },
   "bugs": {
     "url": "https://github.com/addyosmani/oust/issues"
@@ -24,11 +24,11 @@
     "test": "mocha"
   },
   "dependencies": {
-    "cheerio": "^0.19.0",
-    "minimist": "^1.1.0"
+    "cheerio": "^0.22.0",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "^5.2.0"
   },
   "keywords": [
     "stylesheet",
@@ -38,6 +38,6 @@
     "list"
   ],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6"
   }
 }
