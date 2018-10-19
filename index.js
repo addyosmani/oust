@@ -15,10 +15,10 @@
  * limitations under the License.
  *
  */
-'use strict';
-var cheerio = require('cheerio');
 
-var types = {
+const cheerio = require('cheerio');
+
+const types = {
     stylesheets: {
         selector: 'link[rel="stylesheet"]',
         attribute: 'href'
@@ -32,8 +32,8 @@ var types = {
         attribute: 'href'
     },
     preload: {
-      selector: 'link[rel="preload"][as="style"]',
-      attribute: 'href'
+        selector: 'link[rel="preload"][as="style"]',
+        attribute: 'href'
     },
     links: {
         selector: 'a',
@@ -45,15 +45,15 @@ var types = {
     }
 };
 
-module.exports = function (src, type) {
+module.exports = (src, type) => {
     if (!src || !type) {
         throw new Error('`src` and `type` required');
     }
 
-    var chosenType = types[type];
-    var $ = cheerio.load(src);
+    const chosenType = types[type];
+    const $ = cheerio.load(src);
 
-    return $(chosenType.selector).map(function (i, el) {
+    return $(chosenType.selector).map((i, el) => {
         return $(el).attr(chosenType.attribute);
     }).toArray();
 };
@@ -63,14 +63,15 @@ module.exports.raw = function (src, type) {
         throw new Error('`src` and `type` required');
     }
 
-    var chosenType = types[type];
-    var $ = cheerio.load(src);
+    const chosenType = types[type];
+    const $ = cheerio.load(src);
 
-    return Array.prototype.map.call($(chosenType.selector), function(el) {
-        var $el = $(el);
+    return Array.prototype.map.call($(chosenType.selector), el => {
+        const $el = $(el);
+
         return {
-            $el: $el,
+            $el,
             value: $el.attr(chosenType.attribute)
-        }
+        };
     });
 };
