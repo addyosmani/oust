@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-'use strict';
-var fs = require('fs');
-var argv = require('minimist')(process.argv.slice(2));
-var pkg = require('./package.json');
-var oust = require('./');
+
+const fs = require('fs');
+const minimist = require('minimist');
+const pkg = require('./package.json');
+const oust = require('.');
+
+const argv = minimist(process.argv.slice(2));
 
 function printHelp() {
     console.log([
@@ -19,18 +21,18 @@ function printHelp() {
 
 if (argv.v || argv.version) {
     console.log(pkg.version);
-    return;
+    process.exit(0);
 }
 
 if (argv.h || argv.help || argv._.length === 0) {
     printHelp();
-    return;
+    process.exit(0);
 }
 
-var file = argv._[0];
-var type = argv._[1];
+const file = argv._[0];
+const type = argv._[1];
 
-fs.readFile(file, function (err, data) {
+fs.readFile(file, (err, data) => {
     if (err) {
         console.error('Error opening file:', err.message);
         process.exit(1);

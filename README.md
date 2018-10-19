@@ -1,4 +1,4 @@
-# oust [![Build Status](https://travis-ci.org/addyosmani/oust.svg?branch=master)](https://travis-ci.org/addyosmani/oust)
+# oust [![Build Status](https://img.shields.io/travis/addyosmani/oust/master.svg)](https://travis-ci.org/addyosmani/oust) [![dependencies Status](https://img.shields.io/david/addyosmani/oust.svg)](https://david-dm.org/addyosmani/oust) [![devDependencies Status](https://img.shields.io/david/dev/addyosmani/oust.svg)](https://david-dm.org/addyosmani/oust?type=dev)
 
 > Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML
 
@@ -59,7 +59,8 @@ var srcs = oust(htmlString, 'images');
 ```
 
 #### Extract cheerio elements alongside the value
-Usefull for post processing/filtering as you get an array of matched elements 
+
+Usefull for post processing/filtering as you get an array of matched elements
 with cheerio convenience syntax (e.g. `$el.attr()`)
 
 ```js
