@@ -21,14 +21,17 @@
     "cli.js"
   ],
   "scripts": {
-    "test": "mocha"
+    "mocha": "mocha",
+    "test": "npm run xo && npm run mocha",
+    "xo": "xo"
   },
   "dependencies": {
     "cheerio": "^0.22.0",
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "xo": "^0.23.0"
   },
   "keywords": [
     "stylesheet",
@@ -39,5 +42,11 @@
   ],
   "engines": {
     "node": ">=6"
+  },
+  "xo": {
+    "space": 4,
+    "rules": {
+      "valid-jsdoc": "off"
+    }
   }
 }
