@@ -46,6 +46,7 @@
   "xo": {
     "space": 4,
     "rules": {
+      "unicorn/prefer-spread": "off",
       "valid-jsdoc": "off"
     }
   }

@@ -55,9 +55,9 @@ module.exports = (src, type) => {
     const chosenType = types[type];
     const $ = cheerio.load(src);
 
-    return $(chosenType.selector).map((i, el) => {
+    return Array.from($(chosenType.selector), el => {
         return $(el).attr(chosenType.attribute);
-    }).toArray();
+    });
 };
 
 module.exports.raw = function (src, type) {
@@ -68,7 +68,7 @@ module.exports.raw = function (src, type) {
     const chosenType = types[type];
     const $ = cheerio.load(src);
 
-    return Array.prototype.map.call($(chosenType.selector), el => {
+    return Array.from($(chosenType.selector), el => {
         const $el = $(el);
 
         return {
