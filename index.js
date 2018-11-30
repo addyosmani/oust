@@ -16,6 +16,8 @@
  *
  */
 
+'use strict';
+
 const cheerio = require('cheerio');
 
 const types = {

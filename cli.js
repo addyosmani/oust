@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 const fs = require('fs');
 const minimist = require('minimist');
 const pkg = require('./package.json');
