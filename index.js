@@ -47,7 +47,7 @@ const types = {
     }
 };
 
-module.exports = (src, type) => {
+module.exports = (src, type, noscript = true) => {
     if (!src || !type) {
         throw new Error('`src` and `type` required');
     }
@@ -55,25 +55,39 @@ module.exports = (src, type) => {
     const chosenType = types[type];
     const $ = cheerio.load(src);
 
-    return $(chosenType.selector).map((i, el) => {
-        return $(el).attr(chosenType.attribute);
-    }).toArray();
-};
-
-module.exports.raw = function (src, type) {
-    if (!src || !type) {
-        throw new Error('`src` and `type` required');
-    }
-
-    const chosenType = types[type];
-    const $ = cheerio.load(src);
-
-    return Array.prototype.map.call($(chosenType.selector), el => {
+    return Array.prototype.reduce.call($(chosenType.selector), (accumulator, el) => {
         const $el = $(el);
 
-        return {
+        if (noscript === false && $el.parents('noscript').length !== 0) {
+            return accumulator;
+        }
+
+        accumulator.push($el.attr(chosenType.attribute));
+
+        return accumulator;
+    }, []);
+};
+
+module.exports.raw = function (src, type, noscript = true) {
+    if (!src || !type) {
+        throw new Error('`src` and `type` required');
+    }
+
+    const chosenType = types[type];
+    const $ = cheerio.load(src);
+
+    return Array.prototype.reduce.call($(chosenType.selector), (accumulator, el) => {
+        const $el = $(el);
+
+        if (noscript === false && $el.parents('noscript').length !== 0) {
+            return accumulator;
+        }
+
+        accumulator.push({
             $el,
             value: $el.attr(chosenType.attribute)
-        };
-    });
+        });
+
+        return accumulator;
+    }, []);
 };

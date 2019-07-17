@@ -38,6 +38,36 @@ it('should return an array of stylesheet link cheerio elements', () => {
     assert(links[1].value === 'styles/print.css');
 });
 
+it('should return an array of stylesheet hrefs excluding noscript', () => {
+    const links = oust(fs.readFileSync('test/noscript.html', 'utf8'), 'stylesheets', false);
+    assert(Array.isArray(links));
+    assert(links.length === 1);
+    assert(links[0] === 'styles/main.css');
+});
+
+it('should return an array of stylesheet hrefs including noscript', () => {
+    const links = oust(fs.readFileSync('test/noscript.html', 'utf8'), 'stylesheets', true);
+    assert(Array.isArray(links));
+    assert(links.length === 2);
+    assert(links[0] === 'styles/main.css');
+    assert(links[1] === 'styles/main.css');
+});
+
+it('should return an array of stylesheet link excluding noscript', () => {
+    const links = oust.raw(fs.readFileSync('test/noscript.html', 'utf8'), 'stylesheets', false);
+    assert(Array.isArray(links));
+    assert(links.length === 1);
+    assert(links[0].value === 'styles/main.css');
+});
+
+it('should return an array of stylesheet link including noscript', () => {
+    const links = oust.raw(fs.readFileSync('test/noscript.html', 'utf8'), 'stylesheets', true);
+    assert(Array.isArray(links));
+    assert(links.length === 2);
+    assert(links[0].value === 'styles/main.css');
+    assert(links[1].value === 'styles/main.css');
+});
+
 it('should return an array of script srcs', () => {
     const links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'scripts');
     assert(Array.isArray(links));
