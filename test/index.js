@@ -83,9 +83,3 @@ it('should fail if no valid source is specified', () => {
         oust();
     });
 });
-
-it('should fail if no valid type is specified', () => {
-    assert.throws(() => {
-        oust(fs.readFileSync('test/imports.html', 'utf8'));
-    });
-});
