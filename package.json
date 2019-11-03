@@ -30,7 +30,7 @@
     "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "mocha": "^6.2.0",
+    "mocha": "^6.2.2",
     "xo": "^0.24.0"
   },
   "keywords": [
