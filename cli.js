@@ -10,15 +10,14 @@ const oust = require('.');
 const argv = minimist(process.argv.slice(2));
 
 function printHelp() {
-    console.log([
-        pkg.description,
-        '',
-        'Usage',
-        '  $ oust <filename> <type>',
-        '',
-        'Example',
-        '  $ oust index.html scripts'
-    ].join('\n'));
+    console.log(`
+${pkg.description}
+
+Usage:
+  $ oust <filename> <type>
+
+Example:
+  $ oust index.html scripts`);
 }
 
 if (argv.v || argv.version) {
