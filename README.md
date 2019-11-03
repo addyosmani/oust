@@ -1,4 +1,4 @@
-# oust [![Build Status](https://img.shields.io/travis/addyosmani/oust/master.svg)](https://travis-ci.org/addyosmani/oust) [![dependencies Status](https://img.shields.io/david/addyosmani/oust.svg)](https://david-dm.org/addyosmani/oust) [![devDependencies Status](https://img.shields.io/david/dev/addyosmani/oust.svg)](https://david-dm.org/addyosmani/oust?type=dev)
+# oust [![Build Status](https://github.com/addyosmani/oust/workflows/Tests/badge.svg)](https://github.com/addyosmani/oust/actions?workflow=Tests) [![dependencies Status](https://img.shields.io/david/addyosmani/oust.svg)](https://david-dm.org/addyosmani/oust) [![devDependencies Status](https://img.shields.io/david/dev/addyosmani/oust.svg)](https://david-dm.org/addyosmani/oust?type=dev)
 
 > Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML
 
