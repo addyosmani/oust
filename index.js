@@ -60,7 +60,7 @@ module.exports = (src, type) => {
     }).toArray();
 };
 
-module.exports.raw = function (src, type) {
+module.exports.raw = (src, type) => {
     if (!src || !type) {
         throw new Error('`src` and `type` required');
     }
