@@ -4,14 +4,14 @@
 
 const fs = require('fs');
 const minimist = require('minimist');
-const pkg = require('./package.json');
+const {description, version} = require('./package.json');
 const oust = require('.');
 
 const argv = minimist(process.argv.slice(2));
 
 function printHelp() {
     console.log(`
-${pkg.description}
+${description}
 
 Usage:
   $ oust <filename> <type>
@@ -21,7 +21,7 @@ Example:
 }
 
 if (argv.v || argv.version) {
-    console.log(pkg.version);
+    console.log(version);
     process.exit(0);
 }
 
@@ -30,8 +30,7 @@ if (argv.h || argv.help || argv._.length === 0) {
     process.exit(0);
 }
 
-const file = argv._[0];
-const type = argv._[1];
+const [file, type] = argv._;
 
 fs.readFile(file, (err, data) => {
     if (err) {
