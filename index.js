@@ -47,20 +47,7 @@ const types = {
     }
 };
 
-module.exports = (src, type) => {
-    if (!src || !type) {
-        throw new Error('`src` and `type` required');
-    }
-
-    const chosenType = types[type];
-    const $ = cheerio.load(src);
-
-    return $(chosenType.selector).map((i, el) => {
-        return $(el).attr(chosenType.attribute);
-    }).toArray();
-};
-
-module.exports.raw = (src, type) => {
+function oust(src, type, raw) {
     if (!src || !type) {
         throw new Error('`src` and `type` required');
     }
@@ -71,9 +58,17 @@ module.exports.raw = (src, type) => {
     return Array.prototype.map.call($(chosenType.selector), el => {
         const $el = $(el);
 
-        return {
-            $el,
-            value: $el.attr(chosenType.attribute)
-        };
+        if (raw) {
+            return {
+                $el,
+                value: $el.attr(chosenType.attribute)
+            };
+        }
+
+        return $el.attr(chosenType.attribute);
     });
-};
+}
+
+module.exports = (src, type) => oust(src, type, false);
+
+module.exports.raw = (src, type) => oust(src, type, true);
