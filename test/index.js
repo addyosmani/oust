@@ -6,86 +6,121 @@ const fs = require('fs');
 const assert = require('assert');
 const oust = require('..');
 
+const read = file => fs.readFileSync(file, 'utf8');
+
 it('should return an array of stylesheet link hrefs', () => {
-    const links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'stylesheets');
-    assert(Array.isArray(links));
-    assert(links.length === 2);
-    assert(links[0] === 'bower_components/bootstrap/dist/css/bootstrap.css');
-    assert(links[1] === 'styles/main.css');
+    const links = oust(read('test/sample/index.html'), 'stylesheets');
+    const expected = [
+        'bower_components/bootstrap/dist/css/bootstrap.css',
+        'styles/main.css'
+    ];
+
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+    assert.deepStrictEqual(links, expected);
 });
 
 it('should return an array of refs when passed a HTML string', () => {
     const links = oust('<html><link rel="stylesheet" href="styles/main.css"></html>', 'stylesheets');
-    assert(Array.isArray(links));
-    assert(links.length === 1);
-    assert(links[0] === 'styles/main.css');
+    const expected = [
+        'styles/main.css'
+    ];
+
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+    assert.deepStrictEqual(links, expected);
 });
 
 it('should return an array of stylesheet link cheerio elements', () => {
-    const links = oust.raw(fs.readFileSync('test/media.html', 'utf8'), 'stylesheets');
+    const links = oust.raw(read('test/media.html'), 'stylesheets');
+    const expected = [{
+        value: 'styles/main.css'
+    }, {
+        value: 'styles/print.css'
+    }];
 
-    assert(Array.isArray(links));
-    links.forEach(link => {
-        assert(typeof link.$el.attr === 'function');
-        assert(typeof link.$el.attr === 'function');
-        assert(typeof link.$el.html === 'function');
-        assert(typeof link.$el.val === 'function');
-        assert(typeof link.$el.contents === 'function');
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+
+    links.forEach((link, index) => {
+        assert.strictEqual(typeof link.$el.attr, 'function');
+        assert.strictEqual(typeof link.$el.html, 'function');
+        assert.strictEqual(typeof link.$el.val, 'function');
+        assert.strictEqual(typeof link.$el.contents, 'function');
+        assert.strictEqual(link.value, expected[index].value);
     });
-
-    assert(links.length === 2);
-    assert(links[0].value === 'styles/main.css');
-    assert(links[1].value === 'styles/print.css');
 });
 
 it('should return an array of script srcs', () => {
-    const links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'scripts');
-    assert(Array.isArray(links));
-    assert(links.length === 1);
-    assert(links[0] === 'scripts/main.js');
+    const links = oust(read('test/sample/index.html'), 'scripts');
+    const expected = [
+        'scripts/main.js'
+    ];
+
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+    assert.deepStrictEqual(links, expected);
 });
 
 it('should return an array of HTML imports', () => {
-    const links = oust(fs.readFileSync('test/imports.html', 'utf8'), 'imports');
-    assert(Array.isArray(links));
-    assert(links.length === 3);
-    assert(links[0] === '../polymer/polymer.html');
-    assert(links[1] === '../core-ajax/core-ajax.html');
+    const links = oust(read('test/imports.html'), 'imports');
+    const expected = [
+        '../polymer/polymer.html',
+        '../core-ajax/core-ajax.html',
+        '../core-input/core-input.html'
+    ];
+
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+    assert.deepStrictEqual(links, expected);
 });
 
 it('should return an array of stylesheet preload hrefs', () => {
-    const links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'preload');
-    assert(Array.isArray(links));
-    assert(links.length === 1);
-    assert(links[0] === 'styles/preload.css');
+    const links = oust(read('test/sample/index.html'), 'preload');
+    const expected = [
+        'styles/preload.css'
+    ];
+
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+    assert.deepStrictEqual(links, expected);
 });
 
 it('should return an array of link URLs', () => {
-    const links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'links');
-    assert(Array.isArray(links));
-    assert(links.length === 4);
-    assert(links[0] === 'index.html');
-    assert(links[1] === 'about.html');
-    assert(links[2] === 'contact.html');
+    const links = oust(read('test/sample/index.html'), 'links');
+    const expected = [
+        'index.html',
+        'about.html',
+        'contact.html',
+        '#'
+    ];
+
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+    assert.deepStrictEqual(links, expected);
 });
 
 it('should return an array of image sources', () => {
-    const links = oust(fs.readFileSync('test/sample/index.html', 'utf8'), 'images');
-    assert(Array.isArray(links));
-    assert(links.length === 3);
-    assert(links[0] === 'http://placekitten.com/200/300');
-    assert(links[1] === 'http://placekitten.com/300/400');
-    assert(links[2] === 'http://placekitten.com/500/600');
+    const links = oust(read('test/sample/index.html'), 'images');
+    const expected = [
+        'http://placekitten.com/200/300',
+        'http://placekitten.com/300/400',
+        'http://placekitten.com/500/600'
+    ];
+
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+    assert.deepStrictEqual(links, expected);
 });
 
 it('should fail if no valid source is specified', () => {
     assert.throws(() => {
         oust();
-    });
+    }, /^Error: `src` and `type` required$/);
 });
 
 it('should fail if no valid type is specified', () => {
     assert.throws(() => {
-        oust(fs.readFileSync('test/imports.html', 'utf8'));
-    });
+        oust(read('test/imports.html'));
+    }, /^Error: `src` and `type` required$/);
 });
