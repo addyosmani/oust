@@ -124,3 +124,9 @@ it('should fail if no valid type is specified', () => {
         oust(read('test/imports.html'));
     }, /^Error: `src` and `type` required$/);
 });
+
+it('should fail if invalid type is specified', () => {
+    assert.throws(() => {
+        oust(read('test/imports.html'), 'invalid-type');
+    }, /^Error: Invalid `type` value "invalid-type"/);
+});

@@ -47,9 +47,17 @@ const types = {
     }
 };
 
+const validTypes = Object.keys(types);
+
 function oust(src, type, raw) {
     if (!src || !type) {
         throw new Error('`src` and `type` required');
+    }
+
+    if (!validTypes.includes(type)) {
+        throw new Error(
+            `Invalid \`type\` value "${type}". Choose one of: ${validTypes.join(', ')}`
+        );
     }
 
     const chosenType = types[type];
