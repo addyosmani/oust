@@ -113,19 +113,19 @@ it('should return an array of image sources', () => {
     assert.deepStrictEqual(links, expected);
 });
 
-it('should fail if no valid source is specified', () => {
+it('should fail if no source is specified', () => {
     assert.throws(() => {
         oust();
     }, /^Error: `src` and `type` required$/);
 });
 
-it('should fail if no valid type is specified', () => {
+it('should fail if no type is specified', () => {
     assert.throws(() => {
         oust(read('test/imports.html'));
     }, /^Error: `src` and `type` required$/);
 });
 
-it('should fail if invalid type is specified', () => {
+it('should fail if no valid type is specified', () => {
     assert.throws(() => {
         oust(read('test/imports.html'), 'invalid-type');
     }, /^Error: Invalid `type` value "invalid-type"/);
