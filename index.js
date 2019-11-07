@@ -47,12 +47,12 @@ const types = {
     }
 };
 
-const validTypes = Object.keys(types);
-
 function oust(src, type, raw) {
     if (!src || !type) {
         throw new Error('`src` and `type` required');
     }
+
+    const validTypes = Object.keys(types);
 
     if (!validTypes.includes(type)) {
         throw new Error(
