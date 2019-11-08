@@ -44,9 +44,6 @@
     "node": ">=6"
   },
   "xo": {
-    "space": 4,
-    "rules": {
-      "valid-jsdoc": "off"
-    }
+    "space": 4
   }
 }
