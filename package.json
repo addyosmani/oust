@@ -27,10 +27,10 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "mocha": "^6.2.2",
+    "mocha": "^7.1.1",
     "xo": "^0.25.3"
   },
   "keywords": [
