@@ -113,6 +113,12 @@ it('should return an array of image sources', () => {
     assert.deepStrictEqual(links, expected);
 });
 
+it('should not fail if an empty source is passed', () => {
+    assert.doesNotThrow(() => {
+        oust(read('test/empty.html'), 'stylesheets');
+    });
+});
+
 it('should fail if no source is specified', () => {
     assert.throws(() => {
         oust();

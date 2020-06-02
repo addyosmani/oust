@@ -48,7 +48,7 @@ const types = {
 };
 
 function oust(src, type, raw) {
-    if (!src || !type) {
+    if (typeof src !== 'string' || !type) {
         throw new Error('`src` and `type` required');
     }
 
