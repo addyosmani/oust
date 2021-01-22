@@ -30,8 +30,8 @@
     "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "mocha": "^7.1.1",
-    "xo": "^0.25.3"
+    "mocha": "^7.2.0",
+    "xo": "^0.25.4"
   },
   "keywords": [
     "stylesheet",
