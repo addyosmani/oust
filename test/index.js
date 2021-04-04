@@ -10,10 +10,7 @@ const read = file => fs.readFileSync(file, 'utf8');
 
 it('should return an array of stylesheet link hrefs', () => {
     const links = oust(read('test/sample/index.html'), 'stylesheets');
-    const expected = [
-        'bower_components/bootstrap/dist/css/bootstrap.css',
-        'styles/main.css'
-    ];
+    const expected = ['bower_components/bootstrap/dist/css/bootstrap.css', 'styles/main.css'];
 
     assert.strictEqual(Array.isArray(links), true);
     assert.strictEqual(links.length, expected.length);
@@ -22,9 +19,7 @@ it('should return an array of stylesheet link hrefs', () => {
 
 it('should return an array of refs when passed a HTML string', () => {
     const links = oust('<html><link rel="stylesheet" href="styles/main.css"></html>', 'stylesheets');
-    const expected = [
-        'styles/main.css'
-    ];
+    const expected = ['styles/main.css'];
 
     assert.strictEqual(Array.isArray(links), true);
     assert.strictEqual(links.length, expected.length);
@@ -33,29 +28,30 @@ it('should return an array of refs when passed a HTML string', () => {
 
 it('should return an array of stylesheet link cheerio elements', () => {
     const links = oust.raw(read('test/media.html'), 'stylesheets');
-    const expected = [{
-        value: 'styles/main.css'
-    }, {
-        value: 'styles/print.css'
-    }];
+    const expected = [
+        {
+            value: 'styles/main.css'
+        },
+        {
+            value: 'styles/print.css'
+        }
+    ];
 
     assert.strictEqual(Array.isArray(links), true);
     assert.strictEqual(links.length, expected.length);
 
-    links.forEach((link, index) => {
+    for (const [index, link] of links.entries()) {
         assert.strictEqual(typeof link.$el.attr, 'function');
         assert.strictEqual(typeof link.$el.html, 'function');
         assert.strictEqual(typeof link.$el.val, 'function');
         assert.strictEqual(typeof link.$el.contents, 'function');
         assert.strictEqual(link.value, expected[index].value);
-    });
+    }
 });
 
 it('should return an array of script srcs', () => {
     const links = oust(read('test/sample/index.html'), 'scripts');
-    const expected = [
-        'scripts/main.js'
-    ];
+    const expected = ['scripts/main.js'];
 
     assert.strictEqual(Array.isArray(links), true);
     assert.strictEqual(links.length, expected.length);
@@ -64,11 +60,7 @@ it('should return an array of script srcs', () => {
 
 it('should return an array of HTML imports', () => {
     const links = oust(read('test/imports.html'), 'imports');
-    const expected = [
-        '../polymer/polymer.html',
-        '../core-ajax/core-ajax.html',
-        '../core-input/core-input.html'
-    ];
+    const expected = ['../polymer/polymer.html', '../core-ajax/core-ajax.html', '../core-input/core-input.html'];
 
     assert.strictEqual(Array.isArray(links), true);
     assert.strictEqual(links.length, expected.length);
@@ -77,9 +69,7 @@ it('should return an array of HTML imports', () => {
 
 it('should return an array of stylesheet preload hrefs', () => {
     const links = oust(read('test/sample/index.html'), 'preload');
-    const expected = [
-        'styles/preload.css'
-    ];
+    const expected = ['styles/preload.css'];
 
     assert.strictEqual(Array.isArray(links), true);
     assert.strictEqual(links.length, expected.length);
@@ -88,12 +78,7 @@ it('should return an array of stylesheet preload hrefs', () => {
 
 it('should return an array of link URLs', () => {
     const links = oust(read('test/sample/index.html'), 'links');
-    const expected = [
-        'index.html',
-        'about.html',
-        'contact.html',
-        '#'
-    ];
+    const expected = ['index.html', 'about.html', 'contact.html', '#'];
 
     assert.strictEqual(Array.isArray(links), true);
     assert.strictEqual(links.length, expected.length);
@@ -107,6 +92,24 @@ it('should return an array of image sources', () => {
         'http://placekitten.com/300/400',
         'http://placekitten.com/500/600'
     ];
+
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+    assert.deepStrictEqual(links, expected);
+});
+
+it('should return stylesheets with multiple rel values', () => {
+    const links = oust(read('test/preload-stylesheet.html'), 'stylesheets');
+    const expected = ['assets/css/bootstrap.css'];
+
+    assert.strictEqual(Array.isArray(links), true);
+    assert.strictEqual(links.length, expected.length);
+    assert.deepStrictEqual(links, expected);
+});
+
+it('should return preloads with multiple rel values', () => {
+    const links = oust(read('test/preload-stylesheet.html'), 'preload');
+    const expected = ['assets/css/bootstrap.css'];
 
     assert.strictEqual(Array.isArray(links), true);
     assert.strictEqual(links.length, expected.length);
