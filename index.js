@@ -22,7 +22,7 @@ const cheerio = require('cheerio');
 
 const types = {
     stylesheets: {
-        selector: 'link[rel="stylesheet"]',
+        selector: 'link[rel*="stylesheet"]',
         attribute: 'href'
     },
     scripts: {
@@ -34,7 +34,7 @@ const types = {
         attribute: 'href'
     },
     preload: {
-        selector: 'link[rel="preload"][as="style"]',
+        selector: 'link[rel*="preload"][as="style"]',
         attribute: 'href'
     },
     links: {
@@ -55,25 +55,23 @@ function oust(src, type, raw) {
     const validTypes = Object.keys(types);
 
     if (!validTypes.includes(type)) {
-        throw new Error(
-            `Invalid \`type\` value "${type}". Choose one of: ${validTypes.join(', ')}`
-        );
+        throw new Error(`Invalid \`type\` value "${type}". Choose one of: ${validTypes.join(', ')}`);
     }
 
     const chosenType = types[type];
     const $ = cheerio.load(src);
 
-    return Array.prototype.map.call($(chosenType.selector), el => {
-        const $el = $(el);
+    return Array.prototype.map.call($(chosenType.selector), element => {
+        const $element = $(element);
 
         if (raw) {
             return {
-                $el,
-                value: $el.attr(chosenType.attribute)
+                $el: $element,
+                value: $element.attr(chosenType.attribute)
             };
         }
 
-        return $el.attr(chosenType.attribute);
+        return $element.attr(chosenType.attribute);
     });
 }
 
