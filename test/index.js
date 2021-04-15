@@ -116,7 +116,7 @@ it('should return preloads with multiple rel values', () => {
     assert.deepStrictEqual(links, expected);
 });
 
-it('should return styles from styles tag', () => {
+it('should return inline styles from styles tag', () => {
     const styles = oust(read('test/styles.html'), 'styles');
     const expected = ['body {padding:0}', 'h1 {font-size: 5rem}'];
 

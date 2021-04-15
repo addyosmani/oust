@@ -64,7 +64,7 @@ const srcs = oust(htmlString, 'links');
 const srcs = oust(htmlString, 'images');
 ```
 
-#### Extract styles `<style>...</style>`
+#### Extract inline styles `<style>...</style>`
 
 ```js
 const styles = oust(htmlString, 'styles');
