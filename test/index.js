@@ -116,6 +116,15 @@ it('should return preloads with multiple rel values', () => {
     assert.deepStrictEqual(links, expected);
 });
 
+it('should return styles from styles tag', () => {
+    const styles = oust(read('test/styles.html'), 'styles');
+    const expected = ['body {padding:0}', 'h1 {font-size: 5rem}'];
+
+    assert.strictEqual(Array.isArray(styles), true);
+    assert.strictEqual(styles.length, expected.length);
+    assert.deepStrictEqual(styles, expected);
+});
+
 it('should not fail if an empty source is passed', () => {
     assert.doesNotThrow(() => {
         oust(read('test/empty.html'), 'stylesheets');

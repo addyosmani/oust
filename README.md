@@ -46,6 +46,12 @@ const srcs = oust(htmlString, 'scripts');
 const hrefs = oust(htmlString, 'imports');
 ```
 
+#### Extract style preload references `<link rel="preload" as="style">`
+
+```js
+const hrefs = oust(htmlString, 'imports');
+```
+
 #### Extract URL references `<a href>`
 
 ```js
@@ -56,6 +62,12 @@ const srcs = oust(htmlString, 'links');
 
 ```js
 const srcs = oust(htmlString, 'images');
+```
+
+#### Extract styles `<style>...</style>`
+
+```js
+const styles = oust(htmlString, 'styles');
 ```
 
 #### Extract cheerio elements alongside the value
@@ -81,7 +93,7 @@ const srcs = oust.raw(htmlString, '...');
 Attribute       | Default   | Description
 ---             | ---       | ---
 `src`           | not set   | a valid HTML string to parse for references
-`type`          | not set   | one of `stylesheets`, `scripts`, `imports`, `links`, `images`
+`type`          | not set   | one of `stylesheets`, `scripts`, `imports`, `preload`, `styles`, `links`, `images`
 
 ## CLI
 

@@ -44,6 +44,10 @@ const types = {
     images: {
         selector: 'img',
         attribute: 'src'
+    },
+    styles: {
+        selector: 'style',
+        method: 'text'
     }
 };
 
@@ -64,14 +68,21 @@ function oust(src, type, raw) {
     return Array.prototype.map.call($(chosenType.selector), element => {
         const $element = $(element);
 
+        let value = '';
+        if (chosenType.method && $element[chosenType.method]) {
+            value = $element[chosenType.method]();
+        } else if (chosenType.attribute) {
+            value = $element.attr(chosenType.attribute);
+        }
+
         if (raw) {
             return {
                 $el: $element,
-                value: $element.attr(chosenType.attribute)
+                value
             };
         }
 
-        return $element.attr(chosenType.attribute);
+        return value;
     });
 }
 
