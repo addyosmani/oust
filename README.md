@@ -49,7 +49,7 @@ const hrefs = oust(htmlString, 'imports');
 #### Extract style preload references `<link rel="preload" as="style">`
 
 ```js
-const hrefs = oust(htmlString, 'imports');
+const hrefs = oust(htmlString, 'preload');
 ```
 
 #### Extract URL references `<a href>`
