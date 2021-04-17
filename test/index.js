@@ -125,6 +125,20 @@ it('should return inline styles from styles tag', () => {
     assert.deepStrictEqual(styles, expected);
 });
 
+it('should return hrefs and inline styles in correct order', () => {
+    const styles = oust(read('test/mixed.html'), ['styles', 'preload', 'stylesheets']);
+    const expected = [
+        'body {padding:0}',
+        'assets/css/bootstrap.css',
+        'h1 {font-size: 5rem}',
+        'styles/main.css'
+    ];
+
+    assert.strictEqual(Array.isArray(styles), true);
+    assert.strictEqual(styles.length, expected.length);
+    assert.deepStrictEqual(styles, expected);
+});
+
 it('should not fail if an empty source is passed', () => {
     assert.doesNotThrow(() => {
         oust(read('test/empty.html'), 'stylesheets');
