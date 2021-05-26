@@ -57,16 +57,22 @@ function oust(src, type, raw) {
     }
 
     const validTypes = Object.keys(types);
+    const typeArray = Array.isArray(type) ? type : [type];
 
-    if (!validTypes.includes(type)) {
-        throw new Error(`Invalid \`type\` value "${type}". Choose one of: ${validTypes.join(', ')}`);
+    for (const type of typeArray) {
+        if (!validTypes.includes(type)) {
+            throw new Error(`Invalid \`type\` value "${type}". Choose one of: ${validTypes.join(', ')}`);
+        }
     }
 
-    const chosenType = types[type];
+    const chosenTypes = typeArray.map(type => ({...types[type], type}));
+    const selector = chosenTypes.map(type => type.selector).join(', ');
     const $ = cheerio.load(src);
 
-    return Array.prototype.map.call($(chosenType.selector), element => {
+    return Array.prototype.map.call($(selector), element => {
         const $element = $(element);
+
+        const chosenType = chosenTypes.find(type => $element.is(type.selector));
 
         let value = '';
         if (chosenType.method && $element[chosenType.method]) {
@@ -78,6 +84,7 @@ function oust(src, type, raw) {
         if (raw) {
             return {
                 $el: $element,
+                type: chosenType.type,
                 value
             };
         }

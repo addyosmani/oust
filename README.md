@@ -70,6 +70,12 @@ const srcs = oust(htmlString, 'images');
 const styles = oust(htmlString, 'styles');
 ```
 
+#### Extract preload and stylesheet references combined
+
+```js
+const hrefs = oust(htmlString, ['preload', 'stylesheets']);
+```
+
 #### Extract cheerio elements alongside the value
 
 Usefull for post processing/filtering as you get an array of matched elements
