@@ -2,6 +2,9 @@ name: Tests
 
 on: [push, pull_request]
 
+env:
+  FORCE_COLOR: 2
+
 jobs:
   run:
     name: Node ${{ matrix.node }}
@@ -10,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [8, 10, 12, 14]
+        node: [8, 10, 12, 14, 16]
 
     steps:
       - name: Clone repository
