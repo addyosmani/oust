@@ -1,7 +1,10 @@
+This is a custom fork to resolve "css-what" vulnerability.
+
+**_Warning_** some of the intended features might not work. Please use the original package [oust](https://www.npmjs.com/package/oust)
+
 # oust [![Build Status](https://github.com/addyosmani/oust/workflows/Tests/badge.svg)](https://github.com/addyosmani/oust/actions?workflow=Tests) [![dependencies Status](https://img.shields.io/david/addyosmani/oust.svg)](https://david-dm.org/addyosmani/oust) [![devDependencies Status](https://img.shields.io/david/dev/addyosmani/oust.svg)](https://david-dm.org/addyosmani/oust?type=dev)
 
 > Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML
-
 
 ## Install
 
@@ -9,13 +12,12 @@
 npm install --save-dev oust
 ```
 
-
 ## Usage
 
 First include:
 
 ```js
-const oust = require('oust');
+const oust = require("oust");
 ```
 
 Resource links can then be extracted from either files:
@@ -23,57 +25,57 @@ Resource links can then be extracted from either files:
 #### Extract stylesheets references `<link rel="stylesheet">`
 
 ```js
-const hrefs = oust(htmlString, 'stylesheets');
+const hrefs = oust(htmlString, "stylesheets");
 ```
 
 #### Extract stylesheets references with media print `<link rel="stylesheet" media="print">`
 
 ```js
-const hrefs = oust(htmlString, 'stylesheets', (i, $el) => {
-    return $el.attr('media') === 'print';
+const hrefs = oust(htmlString, "stylesheets", (i, $el) => {
+    return $el.attr("media") === "print";
 });
 ```
 
 #### Extract script references `<script src>`
 
 ```js
-const srcs = oust(htmlString, 'scripts');
+const srcs = oust(htmlString, "scripts");
 ```
 
 #### Extract HTML imports `<link rel="import">`
 
 ```js
-const hrefs = oust(htmlString, 'imports');
+const hrefs = oust(htmlString, "imports");
 ```
 
 #### Extract style preload references `<link rel="preload" as="style">`
 
 ```js
-const hrefs = oust(htmlString, 'preload');
+const hrefs = oust(htmlString, "preload");
 ```
 
 #### Extract URL references `<a href>`
 
 ```js
-const srcs = oust(htmlString, 'links');
+const srcs = oust(htmlString, "links");
 ```
 
 #### Extract image source references `<img src>`
 
 ```js
-const srcs = oust(htmlString, 'images');
+const srcs = oust(htmlString, "images");
 ```
 
 #### Extract inline styles `<style>...</style>`
 
 ```js
-const styles = oust(htmlString, 'styles');
+const styles = oust(htmlString, "styles");
 ```
 
 #### Extract preload and stylesheet references combined
 
 ```js
-const hrefs = oust(htmlString, ['preload', 'stylesheets']);
+const hrefs = oust(htmlString, ["preload", "stylesheets"]);
 ```
 
 #### Extract cheerio elements alongside the value
@@ -91,15 +93,14 @@ const srcs = oust.raw(htmlString, '...');
  ]
 ```
 
-
 ## API
 
 #### Options
 
-Attribute       | Default   | Description
----             | ---       | ---
-`src`           | not set   | a valid HTML string to parse for references
-`type`          | not set   | one of `stylesheets`, `scripts`, `imports`, `preload`, `styles`, `links`, `images`
+| Attribute | Default | Description                                                                        |
+| --------- | ------- | ---------------------------------------------------------------------------------- |
+| `src`     | not set | a valid HTML string to parse for references                                        |
+| `type`    | not set | one of `stylesheets`, `scripts`, `imports`, `preload`, `styles`, `links`, `images` |
 
 ## CLI
 
@@ -143,7 +144,6 @@ oust myFile.html links
 ```sh
 oust myFile.html images
 ```
-
 
 ## License
 
