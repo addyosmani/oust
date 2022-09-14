@@ -23,32 +23,32 @@ const cheerio = require('cheerio');
 const types = {
     stylesheets: {
         selector: 'link[rel*="stylesheet"]',
-        attribute: 'href'
+        attribute: 'href',
     },
     scripts: {
         selector: 'script',
-        attribute: 'src'
+        attribute: 'src',
     },
     imports: {
         selector: 'link[rel="import"]',
-        attribute: 'href'
+        attribute: 'href',
     },
     preload: {
         selector: 'link[rel*="preload"][as="style"]',
-        attribute: 'href'
+        attribute: 'href',
     },
     links: {
         selector: 'a',
-        attribute: 'href'
+        attribute: 'href',
     },
     images: {
         selector: 'img',
-        attribute: 'src'
+        attribute: 'src',
     },
     styles: {
         selector: 'style',
-        method: 'text'
-    }
+        method: 'text',
+    },
 };
 
 function oust(src, type, raw) {
@@ -85,7 +85,7 @@ function oust(src, type, raw) {
             return {
                 $el: $element,
                 type: chosenType.type,
-                value
+                value,
             };
         }
 

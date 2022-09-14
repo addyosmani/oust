@@ -26,12 +26,12 @@
     "xo": "xo"
   },
   "dependencies": {
-    "cheerio": "^0.22.0",
+    "cheerio": "^1.0.0-rc.12",
     "minimist": "^1.2.5"
   },
   "devDependencies": {
     "mocha": "^7.2.0",
-    "xo": "^0.25.4"
+    "xo": "^0.52.3"
   },
   "keywords": [
     "stylesheet",
@@ -41,9 +41,13 @@
     "list"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=8.3"
   },
   "xo": {
-    "space": 4
+    "space": 4,
+    "rules": {
+      "unicorn/prefer-module": "off",
+      "n/prefer-global/process": "off"
+    }
   }
 }
