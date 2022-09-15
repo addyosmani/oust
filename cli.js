@@ -32,11 +32,9 @@ if (argv.h || argv.help || argv._.length === 0) {
 
 const [file, type] = argv._;
 
-fs.readFile(file, (error, data) => {
-    if (error) {
+fs.promises.readFile(file)
+    .then(data => console.log(oust(data, type).join('\n')))
+    .catch(error => {
         console.error('Error opening file:', error.message);
         process.exit(1);
-    }
-
-    console.log(oust(data, type).join('\n'));
-});
+    });

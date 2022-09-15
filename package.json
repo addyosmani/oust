@@ -41,7 +41,7 @@
     "list"
   ],
   "engines": {
-    "node": ">=8.3"
+    "node": ">=12"
   },
   "xo": {
     "space": 4,
