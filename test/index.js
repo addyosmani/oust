@@ -30,11 +30,11 @@ it('should return an array of stylesheet link cheerio elements', () => {
     const links = oust.raw(read('test/media.html'), 'stylesheets');
     const expected = [
         {
-            value: 'styles/main.css'
+            value: 'styles/main.css',
         },
         {
-            value: 'styles/print.css'
-        }
+            value: 'styles/print.css',
+        },
     ];
 
     assert.strictEqual(Array.isArray(links), true);
@@ -90,7 +90,7 @@ it('should return an array of image sources', () => {
     const expected = [
         'http://placekitten.com/200/300',
         'http://placekitten.com/300/400',
-        'http://placekitten.com/500/600'
+        'http://placekitten.com/500/600',
     ];
 
     assert.strictEqual(Array.isArray(links), true);
@@ -131,7 +131,7 @@ it('should return hrefs and inline styles in correct order', () => {
         'body {padding:0}',
         'assets/css/bootstrap.css',
         'h1 {font-size: 5rem}',
-        'styles/main.css'
+        'styles/main.css',
     ];
 
     assert.strictEqual(Array.isArray(styles), true);

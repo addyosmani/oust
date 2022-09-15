@@ -3,29 +3,29 @@ name: Tests
 on: [push, pull_request]
 
 env:
-  FORCE_COLOR: 2
+    FORCE_COLOR: 2
 
 jobs:
-  run:
-    name: Node ${{ matrix.node }}
-    runs-on: ubuntu-latest
+    run:
+        name: Node ${{ matrix.node }}
+        runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        node: [8, 10, 12, 14, 16]
+        strategy:
+            fail-fast: false
+            matrix:
+                node: [12, 14, 16]
 
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v2
+        steps:
+            - name: Clone repository
+              uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
+            - name: Set up Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ matrix.node }}
 
-      - name: Install npm dependencies
-        run: npm ci
+            - name: Install npm dependencies
+              run: npm ci
 
-      - name: Run tests
-        run: npm test
+            - name: Run tests
+              run: npm test
