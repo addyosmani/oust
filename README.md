@@ -5,7 +5,7 @@
 ## Install
 
 ```sh
-npm install --save-dev oust
+npm install oust -D
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ const hrefs = oust(htmlString, 'stylesheets');
 
 ```js
 const hrefs = oust(htmlString, 'stylesheets', (i, $el) => {
-    return $el.attr('media') === 'print';
+  return $el.attr('media') === 'print';
 });
 ```
 
@@ -83,9 +83,9 @@ with cheerio convenience syntax (e.g. `$el.attr()`)
 const srcs = oust.raw(htmlString, '...');
 
  -> [
-    {value: '...', $el: '...'},
-    {value: '...', $el: '...'},
-    ...
+  {value: '...', $el: '...'},
+  {value: '...', $el: '...'},
+  ...
  ]
 ```
 
@@ -108,7 +108,7 @@ npm install --global oust
 Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML
 
 Usage:
-    $ oust <filename> <type>
+  $ oust <filename> <type>
 ```
 
 ### Extract stylesheets references `<link rel="stylesheet">`

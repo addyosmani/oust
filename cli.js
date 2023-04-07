@@ -10,7 +10,7 @@ const oust = require('.');
 const argv = minimist(process.argv.slice(2));
 
 function printHelp() {
-    console.log(`
+  console.log(`
 ${description}
 
 Usage:
@@ -21,20 +21,20 @@ Example:
 }
 
 if (argv.v || argv.version) {
-    console.log(version);
-    process.exit(0);
+  console.log(version);
+  process.exit(0);
 }
 
 if (argv.h || argv.help || argv._.length === 0) {
-    printHelp();
-    process.exit(0);
+  printHelp();
+  process.exit(0);
 }
 
 const [file, type] = argv._;
 
 fs.promises.readFile(file)
-    .then(data => console.log(oust(data, type).join('\n')))
-    .catch(error => {
-        console.error('Error opening file:', error.message);
-        process.exit(1);
-    });
+  .then(data => console.log(oust(data, type).join('\n')))
+  .catch(error => {
+    console.error('Error opening file:', error.message);
+    process.exit(1);
+  });

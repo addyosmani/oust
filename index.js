@@ -21,75 +21,75 @@
 const cheerio = require('cheerio');
 
 const types = {
-    stylesheets: {
-        selector: 'link[rel*="stylesheet"]',
-        attribute: 'href',
-    },
-    scripts: {
-        selector: 'script',
-        attribute: 'src',
-    },
-    imports: {
-        selector: 'link[rel="import"]',
-        attribute: 'href',
-    },
-    preload: {
-        selector: 'link[rel*="preload"][as="style"]',
-        attribute: 'href',
-    },
-    links: {
-        selector: 'a',
-        attribute: 'href',
-    },
-    images: {
-        selector: 'img',
-        attribute: 'src',
-    },
-    styles: {
-        selector: 'style',
-        method: 'text',
-    },
+  stylesheets: {
+    selector: 'link[rel*="stylesheet"]',
+    attribute: 'href',
+  },
+  scripts: {
+    selector: 'script',
+    attribute: 'src',
+  },
+  imports: {
+    selector: 'link[rel="import"]',
+    attribute: 'href',
+  },
+  preload: {
+    selector: 'link[rel*="preload"][as="style"]',
+    attribute: 'href',
+  },
+  links: {
+    selector: 'a',
+    attribute: 'href',
+  },
+  images: {
+    selector: 'img',
+    attribute: 'src',
+  },
+  styles: {
+    selector: 'style',
+    method: 'text',
+  },
 };
 
 function oust(src, type, raw) {
-    if (typeof src !== 'string' || !type) {
-        throw new Error('`src` and `type` required');
+  if (typeof src !== 'string' || !type) {
+    throw new Error('`src` and `type` required');
+  }
+
+  const validTypes = Object.keys(types);
+  const typeArray = Array.isArray(type) ? type : [type];
+
+  for (const type of typeArray) {
+    if (!validTypes.includes(type)) {
+      throw new Error(`Invalid \`type\` value "${type}". Choose one of: ${validTypes.join(', ')}`);
+    }
+  }
+
+  const chosenTypes = typeArray.map(type => ({...types[type], type}));
+  const selector = chosenTypes.map(type => type.selector).join(', ');
+  const $ = cheerio.load(src);
+
+  return Array.prototype.map.call($(selector), element => {
+    const $element = $(element);
+    const chosenType = chosenTypes.find(type => $element.is(type.selector));
+
+    let value = '';
+    if (chosenType.method && $element[chosenType.method]) {
+      value = $element[chosenType.method]();
+    } else if (chosenType.attribute) {
+      value = $element.attr(chosenType.attribute);
     }
 
-    const validTypes = Object.keys(types);
-    const typeArray = Array.isArray(type) ? type : [type];
-
-    for (const type of typeArray) {
-        if (!validTypes.includes(type)) {
-            throw new Error(`Invalid \`type\` value "${type}". Choose one of: ${validTypes.join(', ')}`);
-        }
+    if (raw) {
+      return {
+        $el: $element,
+        type: chosenType.type,
+        value,
+      };
     }
 
-    const chosenTypes = typeArray.map(type => ({...types[type], type}));
-    const selector = chosenTypes.map(type => type.selector).join(', ');
-    const $ = cheerio.load(src);
-
-    return Array.prototype.map.call($(selector), element => {
-        const $element = $(element);
-        const chosenType = chosenTypes.find(type => $element.is(type.selector));
-
-        let value = '';
-        if (chosenType.method && $element[chosenType.method]) {
-            value = $element[chosenType.method]();
-        } else if (chosenType.attribute) {
-            value = $element.attr(chosenType.attribute);
-        }
-
-        if (raw) {
-            return {
-                $el: $element,
-                type: chosenType.type,
-                value,
-            };
-        }
-
-        return value;
-    });
+    return value;
+  });
 }
 
 module.exports = (src, type) => oust(src, type, false);

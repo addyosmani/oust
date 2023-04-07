@@ -46,10 +46,11 @@
     "node": ">=12"
   },
   "xo": {
-    "space": 4,
+    "space": 2,
     "rules": {
-      "unicorn/prefer-module": "off",
-      "n/prefer-global/process": "off"
+      "capitalized-comments": "off",
+      "n/prefer-global/process": "off",
+      "unicorn/prefer-module": "off"
     }
   }
 }
