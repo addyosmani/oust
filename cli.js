@@ -35,6 +35,6 @@ const [file, type] = argv._;
 fs.promises.readFile(file)
   .then(data => console.log(oust(data, type).join('\n')))
   .catch(error => {
-    console.error('Error opening file:', error.message);
+    console.error(`Error opening file: ${error.message}`);
     process.exit(1);
   });
