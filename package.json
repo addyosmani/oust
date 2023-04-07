@@ -21,8 +21,10 @@
     "cli.js"
   ],
   "scripts": {
-    "mocha": "mocha",
-    "test": "npm run xo && npm run mocha",
+    "lint": "xo",
+    "fix": "xo --fix",
+    "uvu": "uvu test --ignore sample",
+    "test": "npm run lint && npm run uvu",
     "xo": "xo"
   },
   "dependencies": {
@@ -30,7 +32,7 @@
     "minimist": "^1.2.8"
   },
   "devDependencies": {
-    "mocha": "^10.2.0",
+    "uvu": "^0.5.6",
     "xo": "^0.52.3"
   },
   "keywords": [
