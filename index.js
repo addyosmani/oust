@@ -71,7 +71,6 @@ function oust(src, type, raw) {
 
     return Array.prototype.map.call($(selector), element => {
         const $element = $(element);
-
         const chosenType = chosenTypes.find(type => $element.is(type.selector));
 
         let value = '';
