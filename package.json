@@ -23,7 +23,7 @@
   "scripts": {
     "lint": "xo",
     "fix": "xo --fix",
-    "uvu": "uvu test --ignore sample",
+    "uvu": "uvu test --ignore fixtures",
     "test": "npm run uvu",
     "test:coverage": "c8 npm run uvu",
     "xo": "xo"
