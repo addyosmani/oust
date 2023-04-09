@@ -24,8 +24,8 @@
     "lint": "xo",
     "fix": "xo --fix",
     "uvu": "uvu test --ignore sample",
-    "test": "npm run lint && npm run uvu",
-    "test:coverage": "npm run lint && c8 npm run uvu",
+    "test": "npm run uvu",
+    "test:coverage": "c8 npm run uvu",
     "xo": "xo"
   },
   "dependencies": {
