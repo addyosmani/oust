@@ -93,10 +93,10 @@ const srcs = oust.raw(htmlString, '...');
 
 ### Options
 
-Attribute       | Default   | Description
----             | ---       | ---
-`src`           | not set   | a valid HTML string to parse for references
-`type`          | not set   | one of `stylesheets`, `scripts`, `imports`, `preload`, `styles`, `links`, `images`
+Attribute  | Default  | Description
+---        | ---      | ---
+`src`      | not set  | a valid HTML string to parse for references
+`type`     | not set  | one of `stylesheets`, `scripts`, `imports`, `preload`, `styles`, `links`, `images`
 
 ## CLI
 
