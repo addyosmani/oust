@@ -51,7 +51,7 @@ const types = {
   },
 };
 
-function oust(src, type, raw) {
+function oust(src, type, raw = false) {
   if (typeof src !== 'string' || !type) {
     throw new Error('`src` and `type` required');
   }
@@ -80,7 +80,7 @@ function oust(src, type, raw) {
       value = $element.attr(chosenType.attribute);
     }
 
-    if (raw) {
+    if (raw === true) {
       return {
         $el: $element,
         type: chosenType.type,
@@ -92,6 +92,6 @@ function oust(src, type, raw) {
   });
 }
 
-module.exports = (src, type) => oust(src, type, false);
+module.exports = (src, type) => oust(src, type);
 
 module.exports.raw = (src, type) => oust(src, type, true);
