@@ -51,7 +51,6 @@
     "space": 2,
     "rules": {
       "capitalized-comments": "off",
-      "n/prefer-global/process": "off",
       "unicorn/prefer-module": "off"
     }
   }

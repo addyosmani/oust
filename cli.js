@@ -3,6 +3,7 @@
 'use strict';
 
 const fs = require('fs');
+const process = require('process');
 const minimist = require('minimist');
 const {description, version} = require('./package.json');
 const oust = require('.');
