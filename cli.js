@@ -33,7 +33,7 @@ if (argv.h || argv.help || argv._.length === 0) {
 
 const [file, type] = argv._;
 
-fs.promises.readFile(file)
+fs.promises.readFile(file, 'utf8')
   .then(data => console.log(oust(data, type).join('\n')))
   .catch(error => {
     console.error(`Error opening file: ${error.message}`);
