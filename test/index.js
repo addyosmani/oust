@@ -59,7 +59,11 @@ test('should return an array of script srcs', () => {
 
 test('should return an array of HTML imports', () => {
   const links = oust(read('test/fixtures/imports.html'), 'imports');
-  const expected = ['../polymer/polymer.html', '../core-ajax/core-ajax.html', '../core-input/core-input.html'];
+  const expected = [
+    '../polymer/polymer.html',
+    '../core-ajax/core-ajax.html',
+    '../core-input/core-input.html',
+  ];
 
   assert.instance(links, Array);
   assert.is(links.length, expected.length);
@@ -77,7 +81,12 @@ test('should return an array of stylesheet preload hrefs', () => {
 
 test('should return an array of link URLs', () => {
   const links = oust(read('test/fixtures/sample/index.html'), 'links');
-  const expected = ['index.html', 'about.html', 'contact.html', '#'];
+  const expected = [
+    'index.html',
+    'about.html',
+    'contact.html',
+    '#',
+  ];
 
   assert.instance(links, Array);
   assert.is(links.length, expected.length);
@@ -117,7 +126,10 @@ test('should return preloads with multiple rel values', () => {
 
 test('should return inline styles from styles tag', () => {
   const styles = oust(read('test/fixtures/styles.html'), 'styles');
-  const expected = ['body {padding:0}', 'h1 {font-size: 5rem}'];
+  const expected = [
+    'body {padding:0}',
+    'h1 {font-size: 5rem}',
+  ];
 
   assert.instance(styles, Array);
   assert.is(styles.length, expected.length);
