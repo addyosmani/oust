@@ -1,6 +1,6 @@
 {
   "name": "oust",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "Addy Osmani <addyosmani@gmail.com> (https://addyosmani.com/)",
   "license": "Apache-2.0",
   "description": "Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML",
