@@ -40,10 +40,10 @@ test('should return an array of stylesheet link cheerio elements', () => {
   assert.is(links.length, expected.length);
 
   for (const [index, link] of links.entries()) {
-    assert.is(typeof link.$el.attr, 'function');
-    assert.is(typeof link.$el.html, 'function');
-    assert.is(typeof link.$el.val, 'function');
-    assert.is(typeof link.$el.contents, 'function');
+    assert.type(link.$el.attr, 'function');
+    assert.type(link.$el.html, 'function');
+    assert.type(link.$el.val, 'function');
+    assert.type(link.$el.contents, 'function');
     assert.is(link.value, expected[index].value);
   }
 });
