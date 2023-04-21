@@ -143,4 +143,4 @@ oust myFile.html images
 
 ## License
 
-Released under the [Apache 2 license. © Google 2014](LICENSE).
+Released under the [Apache 2 license](LICENSE). © Google 2014.
