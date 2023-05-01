@@ -3,13 +3,17 @@
 const fs = require('fs');
 const {test} = require('uvu');
 const assert = require('uvu/assert');
-const oust = require('..');
+const oust = require('../index.js');
 
 const read = file => fs.readFileSync(file, 'utf8');
 
 test('should return an array of stylesheet link hrefs', () => {
-  const links = oust(read('test/fixtures/sample/index.html'), 'stylesheets');
-  const expected = ['bower_components/bootstrap/dist/css/bootstrap.css', 'styles/main.css'];
+  const fixture = read('test/fixtures/sample/index.html');
+  const links = oust(fixture, 'stylesheets');
+  const expected = [
+    'bower_components/bootstrap/dist/css/bootstrap.css',
+    'styles/main.css',
+  ];
 
   assert.instance(links, Array);
   assert.is(links.length, expected.length);
@@ -17,7 +21,8 @@ test('should return an array of stylesheet link hrefs', () => {
 });
 
 test('should return an array of refs when passed a HTML string', () => {
-  const links = oust('<html><link rel="stylesheet" href="styles/main.css"></html>', 'stylesheets');
+  const fixture = '<html><link rel="stylesheet" href="styles/main.css"></html>';
+  const links = oust(fixture, 'stylesheets');
   const expected = ['styles/main.css'];
 
   assert.instance(links, Array);
@@ -26,7 +31,8 @@ test('should return an array of refs when passed a HTML string', () => {
 });
 
 test('should return an array of stylesheet link cheerio elements', () => {
-  const links = oust.raw(read('test/fixtures/media.html'), 'stylesheets');
+  const fixture = read('test/fixtures/media.html');
+  const links = oust.raw(fixture, 'stylesheets');
   const expected = [
     {
       value: 'styles/main.css',
@@ -49,7 +55,8 @@ test('should return an array of stylesheet link cheerio elements', () => {
 });
 
 test('should return an array of script srcs', () => {
-  const links = oust(read('test/fixtures/sample/index.html'), 'scripts');
+  const fixture = read('test/fixtures/sample/index.html');
+  const links = oust(fixture, 'scripts');
   const expected = ['scripts/main.js'];
 
   assert.instance(links, Array);
@@ -58,7 +65,8 @@ test('should return an array of script srcs', () => {
 });
 
 test('should return an array of HTML imports', () => {
-  const links = oust(read('test/fixtures/imports.html'), 'imports');
+  const fixture = read('test/fixtures/imports.html');
+  const links = oust(fixture, 'imports');
   const expected = [
     '../polymer/polymer.html',
     '../core-ajax/core-ajax.html',
@@ -71,7 +79,8 @@ test('should return an array of HTML imports', () => {
 });
 
 test('should return an array of stylesheet preload hrefs', () => {
-  const links = oust(read('test/fixtures/sample/index.html'), 'preload');
+  const fixture = read('test/fixtures/sample/index.html');
+  const links = oust(fixture, 'preload');
   const expected = ['styles/preload.css'];
 
   assert.instance(links, Array);
@@ -80,7 +89,8 @@ test('should return an array of stylesheet preload hrefs', () => {
 });
 
 test('should return an array of link URLs', () => {
-  const links = oust(read('test/fixtures/sample/index.html'), 'links');
+  const fixture = read('test/fixtures/sample/index.html');
+  const links = oust(fixture, 'links');
   const expected = [
     'index.html',
     'about.html',
@@ -94,7 +104,8 @@ test('should return an array of link URLs', () => {
 });
 
 test('should return an array of image sources', () => {
-  const links = oust(read('test/fixtures/sample/index.html'), 'images');
+  const fixture = read('test/fixtures/sample/index.html');
+  const links = oust(fixture, 'images');
   const expected = [
     'http://placekitten.com/200/300',
     'http://placekitten.com/300/400',
@@ -107,7 +118,8 @@ test('should return an array of image sources', () => {
 });
 
 test('should return stylesheets with multiple rel values', () => {
-  const links = oust(read('test/fixtures/preload-stylesheet.html'), 'stylesheets');
+  const fixture = read('test/fixtures/preload-stylesheet.html');
+  const links = oust(fixture, 'stylesheets');
   const expected = ['assets/css/bootstrap.css'];
 
   assert.instance(links, Array);
@@ -116,7 +128,8 @@ test('should return stylesheets with multiple rel values', () => {
 });
 
 test('should return preloads with multiple rel values', () => {
-  const links = oust(read('test/fixtures/preload-stylesheet.html'), 'preload');
+  const fixture = read('test/fixtures/preload-stylesheet.html');
+  const links = oust(fixture, 'preload');
   const expected = ['assets/css/bootstrap.css'];
 
   assert.instance(links, Array);
@@ -125,11 +138,9 @@ test('should return preloads with multiple rel values', () => {
 });
 
 test('should return inline styles from styles tag', () => {
-  const styles = oust(read('test/fixtures/styles.html'), 'styles');
-  const expected = [
-    'body {padding:0}',
-    'h1 {font-size: 5rem}',
-  ];
+  const fixture = read('test/fixtures/styles.html');
+  const styles = oust(fixture, 'styles');
+  const expected = ['body {padding:0}', 'h1 {font-size: 5rem}'];
 
   assert.instance(styles, Array);
   assert.is(styles.length, expected.length);
@@ -137,7 +148,8 @@ test('should return inline styles from styles tag', () => {
 });
 
 test('should return hrefs and inline styles in correct order', () => {
-  const styles = oust(read('test/fixtures/mixed.html'), ['styles', 'preload', 'stylesheets']);
+  const fixture = read('test/fixtures/mixed.html');
+  const styles = oust(fixture, ['styles', 'preload', 'stylesheets']);
   const expected = [
     'body {padding:0}',
     'assets/css/bootstrap.css',
@@ -151,8 +163,9 @@ test('should return hrefs and inline styles in correct order', () => {
 });
 
 test('should not fail if an empty source is passed', () => {
+  const fixture = read('test/fixtures/empty.html');
   assert.not.throws(() => {
-    oust(read('test/fixtures/empty.html'), 'stylesheets');
+    oust(fixture, 'stylesheets');
   });
 });
 
@@ -163,14 +176,16 @@ test('should fail if no source is specified', () => {
 });
 
 test('should fail if no type is specified', () => {
+  const fixture = read('test/fixtures/imports.html');
   assert.throws(() => {
-    oust(read('test/fixtures/imports.html'));
+    oust(fixture);
   }, 'Error: `src` and `type` required');
 });
 
 test('should fail if no valid type is specified', () => {
+  const fixture = read('test/fixtures/imports.html');
   assert.throws(() => {
-    oust(read('test/fixtures/imports.html'), 'invalid-type');
+    oust(fixture, 'invalid-type');
   }, 'Error: Invalid `type` value "invalid-type"');
 });
 
