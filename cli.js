@@ -6,7 +6,7 @@ const fs = require('fs');
 const process = require('process');
 const minimist = require('minimist');
 const {description, version} = require('./package.json');
-const oust = require('.');
+const oust = require('./index.js');
 
 const argv = minimist(process.argv.slice(2));
 
