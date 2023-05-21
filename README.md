@@ -1,4 +1,7 @@
-# oust [![Build Status](https://github.com/addyosmani/oust/workflows/Tests/badge.svg)](https://github.com/addyosmani/oust/actions?workflow=Tests)
+# oust
+
+[![CI](https://img.shields.io/github/actions/workflow/status/addyosmani/oust/test.yml?branch=master&label=CI&logo=github)](https://github.com/addyosmani/oust/actions/workflows/test.yml?query=branch%3Amaster)
+[![npm version](https://img.shields.io/npm/v/oust?logo=npm&logoColor=fff)](https://www.npmjs.com/package/oust)
 
 > Extract URLs to stylesheets, scripts, links, images or HTML imports from HTML
 
@@ -82,11 +85,13 @@ with cheerio convenience syntax (e.g. `$el.attr()`)
 ```js
 const srcs = oust.raw(htmlString, '...');
 
- -> [
+/*
+-> [
   {value: '...', $el: '...'},
   {value: '...', $el: '...'},
   ...
  ]
+*/
 ```
 
 ## API
