@@ -5,8 +5,8 @@
 const fs = require('fs');
 const process = require('process');
 const minimist = require('minimist');
-const {description, version} = require('./package.json');
-const oust = require('./index.js');
+const {description, version} = require('../package.json');
+const oust = require('../index.js');
 
 const argv = minimist(process.argv.slice(2));
 
@@ -34,7 +34,10 @@ if (argv.h || argv.help || argv._.length === 0) {
 const [file, type] = argv._;
 
 fs.promises.readFile(file, 'utf8')
-  .then(data => console.log(oust(data, type).join('\n')))
+  .then(data => {
+    const srcs = oust(data, type).join('\n');
+    console.log(srcs);
+  })
   .catch(error => {
     console.error(`Error opening file: ${error.message}`);
     process.exit(1);

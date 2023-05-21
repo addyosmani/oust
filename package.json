@@ -14,11 +14,11 @@
   "homepage": "https://github.com/addyosmani/oust",
   "main": "index.js",
   "bin": {
-    "oust": "cli.js"
+    "oust": "bin/cli.js"
   },
   "files": [
-    "index.js",
-    "cli.js"
+    "bin/cli.js",
+    "index.js"
   ],
   "scripts": {
     "lint": "xo",
