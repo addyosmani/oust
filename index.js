@@ -65,11 +65,11 @@ function oust(src, type, raw) {
     }
   }
 
-  const chosenTypes = typeArray.map(type => ({...types[type], type}));
-  const selector = chosenTypes.map(type => type.selector).join(', ');
   const $ = cheerio.load(src);
+  const chosenTypes = typeArray.map(type => ({...types[type], type}));
+  const $selector = $(chosenTypes.map(type => type.selector).join(', '));
 
-  return Array.prototype.map.call($(selector), element => {
+  return [...$selector].map(element => {
     const $el = $(element);
     const {type, method, attribute} = chosenTypes.find(type => $el.is(type.selector));
     let value = '';
