@@ -20,7 +20,7 @@ test('should return an array of stylesheet link hrefs', () => {
   assert.equal(links, expected);
 });
 
-test('should return an array of refs when passed a HTML string', () => {
+test('should return an array of refs when passed an HTML string', () => {
   const fixture = '<html><link rel="stylesheet" href="styles/main.css"></html>';
   const links = oust(fixture, 'stylesheets');
   const expected = ['styles/main.css'];

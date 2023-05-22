@@ -87,8 +87,8 @@ const srcs = oust.raw(htmlString, '...');
 
 /*
 -> [
-  {value: '...', $el: '...'},
-  {value: '...', $el: '...'},
+  {$el: '...', type: '...', value: '...'},
+  {$el: '...', type: '...', value: '...'},
   ...
  ]
 */

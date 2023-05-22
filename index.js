@@ -51,7 +51,7 @@ const types = {
   },
 };
 
-function oust(src, type, raw = false) {
+function oust(src, type, raw) {
   if (typeof src !== 'string' || !type) {
     throw new Error('`src` and `type` required');
   }
@@ -70,28 +70,20 @@ function oust(src, type, raw = false) {
   const $ = cheerio.load(src);
 
   return Array.prototype.map.call($(selector), element => {
-    const $element = $(element);
-    const chosenType = chosenTypes.find(type => $element.is(type.selector));
-
+    const $el = $(element);
+    const {type, method, attribute} = chosenTypes.find(type => $el.is(type.selector));
     let value = '';
-    if (chosenType.method && $element[chosenType.method]) {
-      value = $element[chosenType.method]();
-    } else if (chosenType.attribute) {
-      value = $element.attr(chosenType.attribute);
+
+    if (method && $el[method]) {
+      value = $el[method]();
+    } else if (attribute) {
+      value = $el.attr(attribute);
     }
 
-    if (raw === true) {
-      return {
-        $el: $element,
-        type: chosenType.type,
-        value,
-      };
-    }
-
-    return value;
+    return raw ? {$el, type, value} : value;
   });
 }
 
-module.exports = (src, type) => oust(src, type);
+module.exports = (src, type) => oust(src, type, false);
 
 module.exports.raw = (src, type) => oust(src, type, true);
