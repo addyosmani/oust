@@ -71,7 +71,7 @@ function oust(src, type, raw) {
 
   return [...$selector].map(element => {
     const $el = $(element);
-    const {type, method, attribute} = chosenTypes.find(type => $el.is(type.selector));
+    const {type, method, attribute} = chosenTypes.find(type => $el.is(type.selector)) || {};
     let value = '';
 
     if (method && $el[method]) {
