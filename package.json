@@ -51,7 +51,8 @@
     "space": 2,
     "rules": {
       "capitalized-comments": "off",
-      "unicorn/prefer-module": "off"
+      "unicorn/prefer-module": "off",
+      "unicorn/prevent-abbreviations": "off"
     }
   }
 }
