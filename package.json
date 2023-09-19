@@ -35,7 +35,7 @@
   "devDependencies": {
     "c8": "^8.0.1",
     "uvu": "^0.5.6",
-    "xo": "^0.52.4"
+    "xo": "^0.56.0"
   },
   "keywords": [
     "stylesheet",
@@ -45,13 +45,14 @@
     "list"
   ],
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "xo": {
     "space": 2,
     "rules": {
       "capitalized-comments": "off",
       "unicorn/prefer-module": "off",
+      "unicorn/prefer-top-level-await": "off",
       "unicorn/prevent-abbreviations": "off"
     }
   }
